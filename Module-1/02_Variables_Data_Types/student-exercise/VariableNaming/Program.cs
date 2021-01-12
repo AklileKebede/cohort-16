@@ -32,53 +32,76 @@ namespace VariableNaming
             3. 3 raccoons are playing in the woods. 2 go home to eat dinner. How
             many raccoons are left in the woods?
             */
-
+            int coonsInWoods = 3;
+            int coonsWentHome = 2;
+            int coonsRemaining = coonsInWoods - coonsWentHome;
             /*
             4. There are 5 flowers and 3 bees. How many less bees than flowers?
             */
-
+            int flowers = 5;
+            int bees = 3;
+            int differenceBeesFlowers = flowers - bees;
+            Console.WriteLine(differenceBeesFlowers + " less");
             /*
             5. 1 lonely pigeon was eating breadcrumbs. Another pigeon came to eat
             breadcrumbs, too. How many pigeons are eating breadcrumbs now?
             */
-
+            int lonelyPigeon = 1;
+            int anotherPigeon = 1;
+            int totalPigeons = lonelyPigeon + anotherPigeon;
             /*
             6. 3 owls were sitting on the fence. 2 more owls joined them. How many
             owls are on the fence now?
             */
-
+            int owlsOnFence = 3;
+            int owlsJoined = 2;
+            int totalOwlsOnFence = owlsOnFence + owlsJoined;
             /*
             7. 2 beavers were working on their home. 1 went for a swim. How many
             beavers are still working on their home?
             */
-
+            int workingBeavers = 2;
+            int swimmingBeavers = 1;
+            int diffWorkingBeavers = workingBeavers - swimmingBeavers;
             /*
             8. 2 toucans are sitting on a tree limb. 1 more toucan joins them. How
             many toucans in all?
             */
-
+            int sittingToucans = 2;
+            int joiningToucan = 1;
+            int totalToucanOnTree = sittingToucans + joiningToucan;
             /*
             9. There are 4 squirrels in a tree with 2 nuts. How many more squirrels
             are there than nuts?
             */
-
+            int squirrels = 4;
+            int nuts = 2;
+            int diffSquirrelsNuts = squirrels - nuts;
             /*
             10. Mrs. Hilt found a quarter, 1 dime, and 2 nickels. How much money did
             she find?
             */
-
-            /*
-            11. Mrs. Hilt's favorite first grade classes are baking muffins. Mrs. Brier's
-            class bakes 18 muffins, Mrs. MacAdams's class bakes 20 muffins, and
-            Mrs. Flannery's class bakes 17 muffins. How many muffins does first
-            grade bake in all?
-            */
-
+            decimal quarter = .50M;
+            decimal dime = .10M;
+            decimal nickels = .05M;
+            decimal foundMoney = quarter + dime + (2 * nickels);
+            Console.WriteLine("11. Mrs.Hilt's favorite first grade classes are baking muffins. Mrs. Brier's"
+            + " class bakes 18 muffins, Mrs.MacAdams's class bakes 20 muffins, and"
+            + " Mrs.Flannery's class bakes 17 muffins.\nHow many muffins does first"
+            + " grade bake in all?\n");
+            
+            int brierClassMuffins = 18;
+            int macadamsClassMuffins = 20;
+            int flanneryClassMuffins = 17;
+            int firstGradeBakedMuffins = brierClassMuffins + macadamsClassMuffins + flanneryClassMuffins;
+            Console.WriteLine(firstGradeBakedMuffins);
             /*
             12. Mrs. Hilt bought a yoyo for 24 cents and a whistle for 14 cents. How
             much did she spend in all for the two toys?
             */
-
+            decimal yoyoCost = .24M;
+            decimal whistleCost = .14M;
+            decimal HiltSpentMoney = yoyoCost + whistleCost;
             /*
             13. Mrs. Hilt made 5 Rice Krispie Treats. She used 8 large marshmallows
             and 10 mini marshmallows.How many marshmallows did she use
