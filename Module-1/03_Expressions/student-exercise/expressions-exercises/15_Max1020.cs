@@ -17,8 +17,19 @@ namespace Exercises
       */
         public int Max1020(int a, int b)
         {
+           if ((a>=10 && a<=20) && (b >= 10 && b <= 20))
+            {
+                return Math.Max(a, b); 
+            }
+            else if ((a >= 20 && a <= 10) || (b >= 10 && b <= 20))
+            {
+                return b;
+            }
+           else if ((a >= 10 && a <= 20) || (b <= 10 && b >= 20))
+            {
+                return a;
+            }
             return 0;
         }
-
     }
 }

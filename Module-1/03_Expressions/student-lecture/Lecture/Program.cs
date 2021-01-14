@@ -10,14 +10,23 @@ namespace Lecture
             Part 1: Variable Scope
             ******************************************************************************/
             // Declare a variable
-
+            int outerVariable = 100; 
+            Console.WriteLine("Outervariable is " + outerVariable);
+            
             // Start a statement block
+            {
+             // Print out the variable defined in the outer scope
+                Console.WriteLine("Otervariable (from the inner block = " + outerVariable);
 
-            // Print out the variable defined in the outer scope
+                // Declare a variable in the block (inner scope)   
+                int innerVar = 200;
 
-            // Declare a variable in the block (inner scope)
+                // Print out that variable
+                Console.WriteLine("InnerVar is \n\n" + innerVar);
+            }
 
-            // Print out that variable
+
+
 
             // End the statement block
 
@@ -32,7 +41,17 @@ namespace Lecture
 
             // Create and print some boolean expressions
 
+            int age = 13;
+            if (age >= 18)
+            {
+                Console.WriteLine("You are an adult");
+            }
+            else
+            {
+                Console.WriteLine("You are a kid");
+            }
 
+            Console.WriteLine("This is the end for you");
         }
 
         /*
