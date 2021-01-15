@@ -15,10 +15,17 @@ namespace Lecture
         */
         public int ReturnSumArray()
         {
-            int[] arrayToLoopThrough = { 3, 4, 2, 9 };
+            int[] arrayToLoopThrough = { 3, 4, 2, 9 }; // set of info to work on/with
+            
+            // starting to work with teh array
 
+            int runingSum = 0; // define the starting point runingSum, starting at 0
+            for (int i=0; i<arrayToLoopThrough.Length;i++) // what is the conditions for the loops to run?
+            {
+                runingSum += arrayToLoopThrough[i];// the expration 
+            }
 
-            return 0;
+            return runingSum;
         }
     }
 }

@@ -17,7 +17,12 @@ namespace Exercises
          */
         public int[] MaxEnd3(int[] nums)
         {
-            return new int[] { };
+            int maxValue = nums[0];
+            if (maxValue < nums[2])
+            {
+                maxValue = nums[2];
+            }
+            return new int[] {maxValue,maxValue,maxValue };
         }
 
     }

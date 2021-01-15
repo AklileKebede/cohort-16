@@ -15,7 +15,14 @@ namespace Lecture
         */
         public int FindTheHighestNumber(int[] randomNumbers)
         {
-            return 0;
+            int hightestNumber = randomNumbers[0]; // the first hights number we have is the number in index=0
+
+           for (int i=1; i<randomNumbers.Length-1;i++)
+            {
+                hightestNumber = Math.Max(hightestNumber, randomNumbers[i]);
+            }
+
+            return hightestNumber;          
         }
     }
 }
