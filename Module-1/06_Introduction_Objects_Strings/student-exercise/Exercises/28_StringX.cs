@@ -17,7 +17,28 @@ namespace Exercises
         */
         public string StringX(string str)
         {
-            return null;
+            // if remove all x's other then the ones on i=0 and i= str.Length-1
+
+            // loop looking for x in each index, 
+            // remove all the x's other the the once in i=0 and index= str.Length-1
+
+            string removeX = "";
+
+            if (str.Length<=2) 
+            {
+                return str;
+            }
+
+            
+            for (int i=1; i < str.Length - 1; i++)
+            {
+                if (str.Substring(i,1)!="x") 
+                {
+                    removeX += str.Substring(i,1);
+                }
+            }
+            return str.Substring(0,1)+removeX+str.Substring(str.Length-1);
+           
         }
     }
 }

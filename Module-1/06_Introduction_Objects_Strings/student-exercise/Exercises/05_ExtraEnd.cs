@@ -17,7 +17,12 @@ namespace Exercises
          */
         public string ExtraEnd(string str)
         {
-            return null;
+            string tripleEnd = null;
+            for (int i = 0; i < 3; i++)
+            {
+                tripleEnd += str.Substring(str.Length - 2);
+            }
+            return tripleEnd;
         }
     }
 }

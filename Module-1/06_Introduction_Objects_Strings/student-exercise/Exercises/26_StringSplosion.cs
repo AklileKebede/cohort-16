@@ -16,7 +16,12 @@ namespace Exercises
          */
         public string StringSplosion(string str)
         {
-            return null;
+            string duplicatPartByPart = "";
+            for (int i = 0; i < str.Length; i++)
+            {
+                duplicatPartByPart += str.Substring(0, i);
+            }
+            return duplicatPartByPart+str;
         }
     }
 }

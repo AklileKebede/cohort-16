@@ -18,6 +18,14 @@ namespace Exercises
          */
         public bool HasBad(string str)
         {
+            int badIndexPossision = str.IndexOf("bad"); // check in which index is "bad" apearing
+
+           
+            // if "bad" starts in index 0 || 1, return true
+            if (badIndexPossision==0 || badIndexPossision == 1)
+            {
+                return true;
+            }
             return false;
         }
     }

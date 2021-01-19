@@ -16,7 +16,29 @@ namespace Exercises
          */
         public bool DoubleX(string str)
         {
+            int firstX = str.IndexOf("x");
+
+            if (firstX < 0 || firstX == str.Length - 1)
+            {
+                return false;
+            }
+            else if (str[firstX + 1] == 'x')
+            {
+                return true;
+            }
             return false;
+            //{
+                
+            //    if (str.Substring(i) == "x")
+            //    {
+            //        if (str.Substring(i + 1) == "x")
+            //        {
+            //            return true;
+            //        }
+            //    }
+            //}
+
+            //return false;
         }
     }
 }

@@ -1,10 +1,13 @@
-﻿namespace StringsDemo
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace StringsDemo
 {
-    public class Person
+    class Person
     {
         public string FirstName;
         public string LastName;
-        public int HeightInches;
+        public int HightInches;
     }
-
 }

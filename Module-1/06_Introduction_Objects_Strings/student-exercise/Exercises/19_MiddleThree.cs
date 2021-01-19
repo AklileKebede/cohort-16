@@ -17,7 +17,8 @@ namespace Exercises
          */
         public string MiddleThree(string str)
         {
-            return null;
+           int middleStartIndix= (str.Length - 3)/ 2;
+            return str.Substring(middleStartIndix,3);
         }
     }
 }

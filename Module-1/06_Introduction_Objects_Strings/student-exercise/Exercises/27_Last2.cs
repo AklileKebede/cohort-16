@@ -17,6 +17,7 @@ namespace Exercises
          */
         public int Last2(string str)
         {
+            
             return 0;
         }
     }
