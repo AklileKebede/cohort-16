@@ -16,7 +16,16 @@ namespace Exercises
         */
         public List<double> ArrayInt2ListDouble(int[] intArray)
         {
-            return null;
+            // take each int value and divide by 2 and return an array
+            // change each array item to a double
+            // change the array to a list
+            List<double> returnList = new List<double>();
+            foreach (int intger in intArray)
+            
+            {
+                returnList.Add((double)intger / 2);
+            }
+            return returnList;
         }
     }
 }

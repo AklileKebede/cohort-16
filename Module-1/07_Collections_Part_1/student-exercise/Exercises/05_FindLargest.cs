@@ -16,7 +16,20 @@ namespace Exercises
          */
         public int FindLargest(List<int> integerList)
         {
-            return -1;
+            integerList.Sort();
+            return integerList[integerList.Count - 1];
+
+            //int largest = 0;
+            //foreach ( int integer in integerList)
+            //{
+            //    // if integer > largest then set largest to integer
+            //    if (integer > largest)
+            //    {
+            //        largest = integer;
+            //    }
+            //}
+            //return largest;
         }
+
     }
 }

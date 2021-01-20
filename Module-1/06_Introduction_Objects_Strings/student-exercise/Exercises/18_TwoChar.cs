@@ -22,7 +22,7 @@ namespace Exercises
             {
                 return str.Substring(0, 2);
             }
-            return str.Substring(index, 2);
+            return str.Substring(index, 2); // Todo: test
             
         }
     }
