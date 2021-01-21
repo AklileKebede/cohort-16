@@ -21,31 +21,55 @@ namespace Exercises
         */
         public List<int> InterleaveLists(List<int> listOne, List<int> listTwo)
         {
+            // case 1: both the same size
+            // create a new list one time grab from listOne and then grab from listTwo
+            // return the new list
+
+            List<int> interleaveList = new List<int>();
+            if (listOne.Count== listTwo.Count)
+            {
+                for (int i = 0; i < listOne.Count; i++)
+                {
+
+                    interleaveList.Add(listOne[i]);
+                    interleaveList.Add(listTwo[i]);
+                }
+            }
+            else if (listOne.Count > listTwo.Count)
+            {
+                for (int i = 0; i < listTwo.Count; i++)
+                {
+
+                    interleaveList.Add(listOne[i]);
+                    interleaveList.Add(listTwo[i]);
+                }
+               for (int i= listTwo.Count; i<listOne.Count; i++)
+                {
+                    interleaveList.Add(listOne[i]);
+                }
+            }
+            else
+            {
+                for (int i=0; i<listOne.Count; i++)
+                {
+                    interleaveList.Add(listOne[i]);
+                    interleaveList.Add(listTwo[i]);
+                }
+                for (int i=listOne.Count; i < listTwo.Count; i++)
+                {
+                    interleaveList.Add(listTwo[i]);
+                }
+            }
+
+            
+
             // interleave them beginning with the first element in the first list followed by the first element of the second
 
             // creat a returnList
             // if both lists are eaqual then insert into listOne[i+1] listTwo[i]
 
-           list
-            if (listOne.Count > listTwo.Count)
-            {
-                for ( int i=0; i < listOne.Count; i++)
-                {
-                    listOne.Insert();
-                    
-                }
-            }
-            else if (listOne.Count < listTwo.Count)
-            {
-
-            }
-            else
-            {
-
-            }
-            
-            
-            return null;
+           
+            return interleaveList;
         }
     }
 }

@@ -87,11 +87,11 @@ namespace CarSimulator
         // Vehicle ID.  If this changes after a car is constructed, that would be fraud
         public string VIN { get; set; }
         // Vehicle Make (Chevy). Never changes.
-        public string Make { get; set; }
+        public string Make { get; set; }// remove 'set;' to make read only
         // Vehicle Model (Corvette). Never changes
-        public string Model { get; set; }
+        public string Model { get; set; }// remove 'set;' to make read only
         // Year the car was built. Never changes.
-        public int Year { get; set; }
+        public int Year { get; set; }// remove 'set;' to make read only
 
 
         /***************************************************************************
@@ -108,6 +108,8 @@ namespace CarSimulator
             this.VIN = GenerateVIN();
         }
 
+
+
         // Create a constructor for Car that accepts a vin, year, make and model
         public Car(int year, string make, string model)
         {
@@ -123,12 +125,13 @@ namespace CarSimulator
          * *************************************************************************/
         // Accelerate allows the car to change speeds. We can change the speed from 
         // this method because Speed has a "private set".
-        public void Accelerate()
+        public void Accelerate() 
         {
             if (this.Speed < MAX_SPEED)
             {
                 this.Speed++;
             }
+            return;
         }
 
 
