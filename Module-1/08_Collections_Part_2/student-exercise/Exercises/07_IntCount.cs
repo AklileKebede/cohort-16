@@ -21,7 +21,26 @@ namespace Exercises
          */
         public Dictionary<int, int> IntCount(int[] ints)
         {
-            return null;
+            // creat an empty dictionary
+            // for each int in the array we are going to look for an equal int by looping twice
+            //return a Dictionary<int, int>
+
+            Dictionary<int, int> intCountDictionary = new Dictionary<int, int>();
+
+            foreach (int intValue in ints)
+            {
+                int countInts = 0;
+                foreach (int intCompare in ints)
+                {
+                   
+                    if(intValue == intCompare)
+                    {
+                        countInts++;
+                        intCountDictionary[intValue] = countInts;
+                    }
+                }
+            }
+            return intCountDictionary;
         }
     }
 }

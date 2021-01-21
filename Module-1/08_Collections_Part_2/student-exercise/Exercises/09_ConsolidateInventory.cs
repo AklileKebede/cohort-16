@@ -14,14 +14,31 @@ namespace Exercises
          *
          * Unmatched keys and their int values in Dictionary2 are simply added to Dictionary1.
          *
-         * ConsolidateInventory({"SKU1": 100, "SKU2": 53, "SKU3": 44} {"SKU2":11, "SKU4": 5})
-         * 	 → {"SKU1": 100, "SKU2": 64, "SKU3": 44, "SKU4": 5}
+         * ConsolidateInventory
+         * mainWarehouse      remoteWarehouse  →     merge Dictionary
+         * ({"SKU1": 100,     {"SKU2":11,            {"SKU1": 100,         *     
+         * "SKU2": 53,         "SKU4": 5})            "SKU2": 64,
+         * "SKU3": 44}                                "SKU3": 44,   
+         * 	                                           "SKU4": 5}
          *
          */
         public Dictionary<string, int> ConsolidateInventory(Dictionary<string, int> mainWarehouse,
             Dictionary<string, int> remoteWarehouse)
         {
-            return null;
+            Dictionary<string, int> mergeDictionary = new Dictionary<string, int>(remoteWarehouse) ;
+            
+            foreach (KeyValuePair<string,int> kvp in mainWarehouse)
+            {
+                if (mergeDictionary.ContainsKey(kvp.Key))
+                {
+                    mergeDictionary[kvp.Key] = kvp.Value + remoteWarehouse[kvp.Key];
+                }
+                else
+                {
+                    mergeDictionary[kvp.Key] = kvp.Value;
+                }
+            }
+            return mergeDictionary;
         }
     }
 }

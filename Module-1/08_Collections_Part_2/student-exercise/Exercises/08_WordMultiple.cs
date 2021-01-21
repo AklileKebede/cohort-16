@@ -19,7 +19,22 @@ namespace Exercises
          */
         public Dictionary<string, bool> WordMultiple(string[] words)
         {
-            return null;
+            // creat a dictionary <string, Bool>
+            // check each index and compare it back to the array
+            Dictionary<string, bool> intCountDictionary = new Dictionary<string, bool>();
+            foreach (string word in words)
+            {
+                if (intCountDictionary.ContainsKey(word))
+                {
+                    intCountDictionary[word] = true;
+                }
+                else
+                {
+                    intCountDictionary[word] = false;
+                }
+            }
+            
+            return intCountDictionary;
         }
     }
 }

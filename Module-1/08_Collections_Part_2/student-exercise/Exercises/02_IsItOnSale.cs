@@ -14,12 +14,12 @@ namespace Exercises
          *
          * If the item number is empty or null, return 0.00.
          *
-         * "KITCHEN4001" -> 0.20
-         * "GARAGE1070" -> 0.15
-         * "LIVINGROOM"	-> 0.10
-         * "KITCHEN6073" -> 0.40
-         * "BEDROOM3434" -> 0.60
-         * "BATH0073" -> 0.15
+         * "KITCHEN4001",0.20
+         * "GARAGE1070", 0.15
+         * "LIVINGROOM",0.10
+         * "KITCHEN6073",0.40
+         * "BEDROOM3434",0.60
+         * "BATH0073",0.15
          *
          * The item number should be case insensitive so "kitchen4001", "Kitchen4001", and "KITCHEN4001"
          * should all return 0.20.
@@ -32,7 +32,32 @@ namespace Exercises
          */
         public double IsItOnSale(string itemNumber)
         {
-            return -1.0;
+            // creat a list discountPercentDictionary
+            Dictionary<string, double> discountPercentageDictionary = new Dictionary<string, double>()
+            {
+                {"KITCHEN4001",0.20 },
+                {"GARAGE1070", 0.15},
+                {"LIVINGROOM",0.10},
+                {"KITCHEN6073",0.40},
+                {"BEDROOM3434",0.60 },
+                {"BATH0073",0.15},
+            };
+            if (itemNumber=="" || itemNumber == null)
+            {
+                return 0.00;
+            }
+            
+            // declar itemCapsNumber is itemNumber in all caps
+            string itemCapsName = itemNumber.ToUpper();
+            // if discountPercentageDictionary contains key then it should give the value
+            if (discountPercentageDictionary.ContainsKey(itemCapsName))
+            {
+                return discountPercentageDictionary[itemCapsName];
+            }
+
+            // if itemNumber is empty or null, return 0.00
+            //
+            return 0.00;
         }
     }
 }

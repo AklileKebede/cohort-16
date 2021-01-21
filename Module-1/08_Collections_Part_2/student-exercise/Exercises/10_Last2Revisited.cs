@@ -20,12 +20,43 @@ namespace Exercises
          *
          * Return Dictionary<string, int>, where the key is string from the array, and its last2 count.
          *
-         * Last2Revisited(["hixxhi", "xaxxaxaxx", "axxxaaxx"]) → {"hixxhi": 1, "xaxxaxaxx": 1, "axxxaaxx": 2}
-         *
+         * Last2Revisited(["hixxhi",     →   {"hixxhi": 1, 
+         *                 "xaxxaxaxx",       "xaxxaxaxx": 1,
+         *                 "axxxaaxx"])         "axxxaaxx": 2}
          */
         public Dictionary<string, int> Last2Revisited(string[] words)
         {
-            return null;
+            Dictionary<string, int> lastTwoDictionary = new Dictionary<string, int>(); // creat a new dictionary
+            // creat a loop to go through to array
+            foreach ( string word in words)
+            {
+                lastTwoDictionary[word] = Last2(word);
+            }
+            return lastTwoDictionary;
+        }
+        public int Last2(string str)
+        {
+            // Todo: 1. check string length >2
+            if (str.Length <= 2)
+            {
+                return 0;
+            }
+
+            string lastTwoChar = str.Substring(str.Length - 2); // identify the last two char as substring to find
+            int result = 0;
+
+            for (int i = 0; i < str.Length - 2; i++)
+            {
+                if (str.Substring(i, 2) == lastTwoChar) // if index i and i+1 has the last two char then add one to count 
+                {
+                    result++;
+                }
+
+            }
+            // str.Contains(lastTwoChar) // search for the # of times the substring appears in str and -1 or stop before the last one char
+
+            return result;
         }
     }
 }
+

@@ -7,26 +7,67 @@ namespace DictionaryCollection
     {
         static void Main(string[] args)
         {
-            Console.Write("Enter a State code: ");
-            string stateCode = Console.ReadLine().ToUpper();
-            string state = LookupState(stateCode);
-            Console.WriteLine($"The state for code '{stateCode}' is '{state}'");
+            Console.Write("Enter a State code: "); // User provides the info
+            string code = Console.ReadLine().ToUpper(); //
+            string state = LookupStateUsingDictionary(code);
+            Console.WriteLine($"The state for code '{code}' is '{state}'");
 
             //DictionaryDemo();
 
             //HashSetDemo();
 
             // Build a name / height database and search it
-            //RunHeightDatabase();
+            RunHeightDatabase();
         }
 
         static string LookupState(string stateCode)
         {
+            // This are paraller lists, and it is important they will reamain in the same order all the time, because we will be comparing index from stateCodes list and use it in stateNames list;
             List<string> stateCodes = new List<string>() { "AL", "AK", "AR", "AZ", "CA", "CO", "CT", "DE" };
-            List<string> stateNames = new List<string>() { "Alabama", "Alaska", "Arkansas", "Arizona", "California", "Colorado", 
+            List<string> stateNames = new List<string>() { "Alabama", "Alaska", "Arkansas", "Arizona", "California", "Colorado",
                 "Connecticut", "Deleware" };
 
-            return null;
+            /*
+             * int index = stateCodes.IndexOf(stateCode); // TODO: what is going on here?! 
+             string stateName = stateNames[index];
+             return stateName; 
+            */
+            int index = stateCodes.IndexOf(stateCode); // TODO: what is going on here? what does it mean?
+            string stateName;
+
+            if (index < 0)
+            {
+                stateName = "UNKNOWN";
+            }
+            else
+            {
+                stateName = stateNames[index];
+            }
+            return stateName;
+        }
+
+        static string LookupStateUsingDictionary(string stateCode)
+        {
+            Dictionary<string, string> states = new Dictionary<string, string>()
+            {
+                {"AL","Alabama"},
+                {"AK","Alaska"},
+                {"AZ","Arizona"},
+                {"AR","Arkansas"},
+                {"CA","California"},
+                {"CO","Colorado"},
+                {"DE","Deleware"},
+            };
+            string stateName; // declare the resulte
+            if (states.ContainsKey(stateCode))
+            {
+                stateName = states[stateCode]; // given a key trying to find the value
+            }
+            else
+            {
+                stateName = "Unknown";
+            }
+            return stateName;
         }
         static void DictionaryDemo()
         {
@@ -47,7 +88,13 @@ namespace DictionaryCollection
             ////      | "Bob"     | 72 |
             ////      | "John"    | 75 |
             ////      | "Jack"    | 73 |
-            Dictionary<string, int> heightDB = null;
+            Dictionary<string, int> heightDB = new Dictionary<string, int>()
+            {
+                {"ben", 71 },
+                {"mike", 71 },
+                {"jamie", 71 },
+                {"collin", 71 },
+            };
 
             string input;
             while (true)
@@ -116,14 +163,37 @@ namespace DictionaryCollection
         public static void ShowAverageHeight(Dictionary<string, int> heightDB)
         {
             //7. Let's get the average height of the people in the dictionary
+            // Get the sum of all the hights - with a new variable
+            //Loop through the collection
+            // add current hieght to sum
+            // Calculate average by dividing teh sum by the Count
+
+            int sumOfHeights = 0;
+            foreach (KeyValuePair<string,int> kvp in heightDB)
+            {
+                sumOfHeights += kvp.Value;
+            }
+            if (heightDB.Count > 0)
+            {
+                Console.WriteLine( $"The average height of teh class is {sumOfHeights / (double)heightDB.Count:n2} inches."); 
+            }
+            else
+            {
+                Console.WriteLine("Sorry, I cannot calculate teh average.");
+            }
         }
 
         public static void PrintDB(Dictionary<string, int> heightDB)
         {
-            // Looping through a dictionary involves using a foreach loop
-            // to look at each item, which is a key-value pair
+              // Looping through a dictionary involves using a foreach loop
+             // to look at each item, which is a key-value pair
             Console.WriteLine("Printing...");
-
+            
+            
+            foreach (KeyValuePair<string, int> kvp in heightDB) //TODO: what is 
+            {
+                Console.WriteLine($"name: {kvp.Key}, Height: {kvp.Value}"); 
+            }
         }
 
         public static void AddEditDB(Dictionary<string, int> db)
@@ -136,21 +206,21 @@ namespace DictionaryCollection
 
             // 2. Check to see if that name is in the dictionary
             //      bool exists = dictionaryVariable.ContainsKey(key)
-            bool exists = false;    // <-- change this
+            bool exists = db.ContainsKey(name);    // <-- change this
 
             if (!exists)
             {
                 Console.WriteLine($"Adding {name} with new value.");
-                // 3. Put the name and height into the dictionary
-                //      dictionaryVariable[key] = value;
-                //      OR dictionaryVariable.Add(key, value);
+                db[name] = height; // 3. Put the name and height into the dictionary
+                                  //      dictionaryVariable[key] = value;
+                                 //      OR dictionaryVariable.Add(key, value);
 
             }
-            else
+            else // Name already exist
             {
                 Console.WriteLine($"Overwriting {name} with new value.");
-                // 4. Overwrite the current key with a new value
-                //      dictionaryVariable[key] = value;
+                db[name] = height;     // 4. Overwrite the current key with a new value
+                                      //      dictionaryVariable[key] = value;
             }
         }
         public static void SearchDB(Dictionary<string, int> db)
@@ -158,8 +228,15 @@ namespace DictionaryCollection
             Console.Write("Which name are you looking for? ");
             string input = Console.ReadLine();
 
-            //5. Let's get a specific name from the dictionary
+            if (db.ContainsKey(input))    //5. Let's get a specific name from the dictionary
+            {
+                Console.WriteLine( $"The name'{input}' exists, and is {db[input]} inches tall.");
+            }
+            else
+            {
+                Console.WriteLine($"The name'{input}' doesn't exists.");
 
+            }
 
 
         }
