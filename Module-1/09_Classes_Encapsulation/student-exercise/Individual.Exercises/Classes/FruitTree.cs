@@ -16,7 +16,7 @@
         {
             /*If there are enough pieces left on the tree,
              * it "picks" the fruit and updates PiecesOfFruitLeft by subtracting numberOfPiecesToRemove from it.*/
-            if ( this.PiecesOfFruitLeft>0)
+            if ( this.PiecesOfFruitLeft>=numberOfPiecesToRemove)
             {
                 this.PiecesOfFruitLeft -= numberOfPiecesToRemove;
                 return true;

@@ -9,15 +9,15 @@
         public Elevator(int numberOfLevels)
         {
             this.NumberOfLevels = numberOfLevels;
-            CurrentLevel = 1;
+            this.CurrentLevel = 1;
         }
         public void OpenDoor()
         {
-            DoorIsOpen = true;
+            this.DoorIsOpen = true;
         }
         public void CloseDoor()
         {
-            DoorIsOpen = false;
+            this.DoorIsOpen = false;
         }
         public void GoUp(int desiredFloor)
         {
@@ -25,9 +25,10 @@
             // as long as the door isn't open. 
             // Can't go past top floor.
 
-            if (!DoorIsOpen && desiredFloor<=NumberOfLevels && desiredFloor>CurrentLevel )
+            if (!DoorIsOpen && desiredFloor<=this.NumberOfLevels && desiredFloor>this.CurrentLevel )
+                                        
             {
-                CurrentLevel = desiredFloor;
+                this.CurrentLevel = desiredFloor;
             }
         }
         public void GoDown(int desiredFloor)
