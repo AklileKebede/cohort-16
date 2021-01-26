@@ -7,7 +7,7 @@ namespace Shapes.Models
     * need to include other drawable things which are not 2D shapes, like text, sprites and lines.  So we defined an 
     * IDrawable interface to say what a class CAN DO.  
     * 
-    * TODO 03 Update Shape2D to implement the IDrawable interface
+    * 
     * 
     **************************************************/
 
@@ -15,7 +15,7 @@ namespace Shapes.Models
     /// <summary>
     /// A two-dimensional shape that can be drawn on the screen
     /// </summary>
-    public class Shape2D
+    public class Shape2D : IDrawable //TODO 02 Update Shape2D to implement the IDrawable interface
     {
         #region statics
         public static char edgeSymbol = '*';
@@ -51,7 +51,7 @@ namespace Shapes.Models
         #region Public Methods
 
         // This should be abstract later
-        virtual public void Draw() { }
+        virtual public void Draw() { } // Empty method to be overriden by the subclass. If it wasn't here we cannot implement the interface;
         
         // This should be abstract later
         virtual public int Area { get { return 0; } }
