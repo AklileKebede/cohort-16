@@ -20,40 +20,11 @@
             {
                 return base.Withdraw(amountToWithdraw + serviceCharge);
             }
-            else if (this.Balance >= 150.0M && this.Balance>= amountToWithdraw) //+ amountToWithdraw )
+            else if (this.Balance >= 150.0M+ amountToWithdraw )
             {
                 return base.Withdraw(amountToWithdraw);
             }
             else return this.Balance;
-
-
-
-
-            /*
-            if (amountToWithdraw >= this.Balance || this.Balance <= 0)
-            {
-                return this.Balance;
-            }
-            else if (amountToWithdraw + serviceCharge < 150.0M)
-            {
-                return base.Withdraw(amountToWithdraw + serviceCharge);
-            
-            else if (amountToWithdraw + serviceCharge >= 150.0M)
-            {
-                return base.Withdraw(amountToWithdraw);
-
-            }
-            else if (this.Balance < 150.0M  )
-            {
-                if (amountToWithdraw + serviceCharge >= 2.0M)
-                {
-                    return base.Withdraw(amountToWithdraw + serviceCharge);
-                }
-                return base.Withdraw(amountToWithdraw + serviceCharge);
-
-            }
-            
-            return base.Withdraw(amountToWithdraw);*/
         }
 
 
