@@ -5,7 +5,7 @@ using System.Text;
 namespace Account
 {
     // TODO 01: Should we be able to create an "Account" directly? i.e. is this really a concrete class?
-    public class Account
+    abstract public class Account // Adding an abstract, makes it so any classes that aren't a subclass instantiate Accoun
     {
         public string AccountNumber { get; set; }
         public decimal Balance { get; private set; }

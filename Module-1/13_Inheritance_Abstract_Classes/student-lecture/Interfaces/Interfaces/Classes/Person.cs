@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Interfaces.Classes
 {
-    public class Person
+    public class Person:IComparable
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -24,21 +24,21 @@ namespace Interfaces.Classes
             return $"{FirstName} {LastName}: Age {Age}, Height {HeightInches} inches.";
         }
 
-        //public int CompareTo(object obj)
-        //{
-        //    Person other = (Person)obj;
+        public int CompareTo(object obj)
+        {
+            Person other = (Person)obj;
 
-        //    //// Sort by Last Name
-        //    //return this.LastName.CompareTo(other.LastName);
+            //// Sort by Last Name
+           // return this.LastName.CompareTo(other.LastName);
 
-        //    //// Sort by First Name
-        //    //return this.FirstName.CompareTo(other.FirstName);
+            //// Sort by First Name
+            //return this.FirstName.CompareTo(other.FirstName);
 
-        //    //// Sort by Age
-        //    //return this.Age - other.Age;
+            //// Sort by Age
+            return this.Age - other.Age;
 
-        //    ////Sort by Height
-        //    //return this.HeightInches - other.HeightInches;
-        //}
+            ////Sort by Height
+            //return this.HeightInches - other.HeightInches;
+        }
     }
 }

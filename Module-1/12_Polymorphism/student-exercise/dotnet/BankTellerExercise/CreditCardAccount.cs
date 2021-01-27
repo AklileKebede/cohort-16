@@ -8,30 +8,34 @@ namespace BankTellerExercise
     {
         public string AccountHolderName { get; }
         public string AccountNumber { get; }
-        public int Debt { get; private set; }
-        public int Balance //The balance for the accounting must be the debt as a negative number.
+        public int Debt 
         {
             get
             {
-                return this.Debt * (-1);
+                return -1 * Balance;
             }
+                }
+        public int Balance //The balance for the accounting must be the debt as a negative number.
+        {
+            get; private set;
+            
         } 
         public CreditCardAccount(string accountHolderName, string accountNumber)
         {
             this.AccountHolderName = accountHolderName;
             this.AccountNumber = accountNumber;
-            Debt = 0;
+           
         }
 
         public int Pay(int amountToPay)
         {
-            this.Debt -= amountToPay;
+            Balance += amountToPay;
             return this.Debt;
             
         }
         public int Charge(int amountToCharge)
         {
-            this.Debt += amountToCharge;
+            Balance -= amountToCharge;
             return this.Debt;
         }
     }

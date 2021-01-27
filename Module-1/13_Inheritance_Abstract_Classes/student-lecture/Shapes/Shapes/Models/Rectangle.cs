@@ -22,8 +22,7 @@ namespace Shapes.Models
         }
 
         #region Constructors
-        public Rectangle(int x, int y, ConsoleColor color, bool isFilled, int width, int height) :
-            base(x, y, color, isFilled)
+        public Rectangle(int x, int y, ConsoleColor color, bool isFilled, int width, int height) : base(x, y, color, isFilled)
         {
             Width = width;
             Height = height;

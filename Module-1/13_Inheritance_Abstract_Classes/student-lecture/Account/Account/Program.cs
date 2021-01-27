@@ -7,6 +7,8 @@ namespace Account
     {
         static void Main(string[] args)
         {
+           // Account account = new Account("3456", 0);   //Since Account has been marked abstract, we cannot creat an instance that is marked as Account
+
             SavingsAccount savings = new SavingsAccount("1234", 1000.00M);
             CheckingAccount checking = new CheckingAccount("9876", 0.50M);
 

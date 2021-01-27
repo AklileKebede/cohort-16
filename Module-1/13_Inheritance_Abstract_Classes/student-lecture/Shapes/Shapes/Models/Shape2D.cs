@@ -12,7 +12,7 @@ namespace Shapes.Models
     /// <summary>
     /// A two-dimensional shape that can be drawn on the screen
     /// </summary>
-    public class Shape2D : IDrawable
+    abstract public class Shape2D : IDrawable // Due to having an abstract methodes, then the class musts be abstract
     {
         #region statics
         public static char edgeSymbol = '*';
@@ -28,12 +28,10 @@ namespace Shapes.Models
         public int Y { get; set; }
 
         // TODO 01: We don't know how to calculate Area and Perimeter, so force any inheriting class to implement these properties.
-        virtual public int Area
+        abstract public int Area // If a class has a abstract method then the class needs to be abstract;
         {
-            get
-            {
-                return 0;
-            }
+            get;
+            
         }
 
         virtual public int Perimeter
@@ -64,7 +62,7 @@ namespace Shapes.Models
         #region Public Methods
 
         // TODO 02: Draw makes no sense at the Shape2D level, so force any inheriting class to implement it.
-        virtual public void Draw() { }
+        abstract public void Draw(); // { } A body cannot be declared when the method is abstract
 
         public override string ToString()
         {

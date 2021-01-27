@@ -54,19 +54,19 @@ namespace Interfaces
 
         static private void SortPeople()
         {
-            List<string> people = new List<string>()
-            {
-                "Mike Morel", "Peggy Collins", "Doug Clarke", "Andrew Quandt"
-            };
+            //List<string> people = new List<string>()
+            //{
+            //    "Mike Morel", "Peggy Collins", "Doug Clarke", "Andrew Quandt"
+            //};
 
             #region Change from a list of strings to a list of Person objects
-            //List<Person> people = new List<Person>()
-            //{
-            //    new Person("Mike", "Morel", 57, 71),
-            //    new Person("Peggy", "Collins", 50, 62),
-            //    new Person("Doug", "Clarke", 58, 74),
-            //    new Person("Andrew", "Quandt", 25, 69)
-            //};
+            List<Person> people = new List<Person>()
+            {
+                new Person("Mike", "Morel", 57, 71),
+                new Person("Peggy", "Collins", 50, 62),
+                new Person("Doug", "Clarke", 58, 74),
+                new Person("Andrew", "Quandt", 25, 69)
+            };
             #endregion
 
             DisplayList(people);
