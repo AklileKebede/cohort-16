@@ -51,6 +51,10 @@ namespace Exercises
                 {"dog", "Pack" },
                 {"crocodile", "Float" },
             };
+            if (animalName == null)
+            {
+                return "unknown";
+            }
 
             if (animals.ContainsKey(animalName.ToLower()))
             {
