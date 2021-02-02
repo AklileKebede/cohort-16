@@ -10,13 +10,14 @@ namespace FileAndDirectory
         {
 
             // Files and Directories
-            FileAndDirectories fad = new FileAndDirectories();
-            fad.UsingTheDirectoryClass();
-            fad.UsingTheFileClass();
+            //FileAndDirectories fad = new FileAndDirectories();
+            //fad.UsingTheDirectoryClass();
+            //fad.UsingTheFileClass();
 
             // File Paths
             //FilePaths fp = new FilePaths();
             //fp.UsingPathToCombineTwoFilePaths();
+            //fp.GettingExtensions();
             //fp.UsingPathForTemporaryFolders();
 
             // Reading Text Files
@@ -46,6 +47,27 @@ namespace FileAndDirectory
 
             Console.Write("Now, wasn't that FUN???");
             return;
+
+            // Read and display an entire text file
+            string path = @"..\..\..\Files\Declaration.txt";
+            using (StreamReader rdr = new StreamReader(path))
+            {
+                string body = rdr.ReadToEnd();
+                Console.WriteLine(body);
+            }
+
+            // Read and display a file line-by-line, with line numbers
+            path = @"..\..\..\Files\Hamlet.txt";
+            using (StreamReader rdr = new StreamReader(path))
+            {
+                int lineNumber = 1;
+                while (!rdr.EndOfStream)
+                {
+                    string line = rdr.ReadLine();
+                    Console.WriteLine($"{lineNumber} {line}");
+                }
+                lineNumber++;
+            }
         }
 
     }

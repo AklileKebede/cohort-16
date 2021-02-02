@@ -11,8 +11,8 @@ namespace States.CLI
     /// </summary>
     class MainMenu : ConsoleMenu
     {
-        private const string US_FILE = "USStates.txt";
-        private const string CANADA_FILE = "CanadianProvinces.txt";
+        private const string US_FILE = @"..\..\..\USStates.txt"; // With @
+        private const string CANADA_FILE = "..\\..\\..\\CanadianProvinces.txt"; // Because @ is missing
 
         private string stateOrProvince = "state";
 
@@ -116,19 +116,57 @@ namespace States.CLI
         /// <returns></returns>
         private bool LoadStateDictionary(string fileName)
         {
-            List<State> stateList = new List<State>()
-            {
-                new State("OH", "Ohio", "Cleveland", "Timberlake"),
-                new State("FL", "Florida", "Disney World", "Shady Oaks Retirement Community")
-            };
+            List<State> stateList = new List<State>();
+            //{
+            //    new State("OH", "Ohio", "Cleveland", "Timberlake"),
+            //    new State("FL", "Florida", "Disney World", "Shady Oaks Retirement Community")
+            //};
 
             // TODO 12: Add exception handling so the program does not blow up with file error
+            try
+            {
 
-            // TODO 11: Open the file, read each line, parse it, and load up a list of states.
 
-            // Now load this collection into a StateDictionary
-            this.stateCodes = new StateDictionary(stateList);
-            return true;
+
+                // TODO 11: Open the file, read each line, parse it, and load up a list of states.
+
+                using (StreamReader reader = new StreamReader(fileName))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        // Read the next line
+                        string input = reader.ReadLine();
+                        //Split the line into individual fields
+                        string[] fields = input.Split("|");
+                        //Add the each field to the appropriate part
+                        string stateName = fields[0];
+                        string stateCode = fields[1];
+                        string capital = fields[2];
+                        string largestCity = fields[3];
+
+                        // Create state according to the constructor
+                        State state = new State(stateCode, stateName, capital, largestCity);
+                        // Add the state to the dictionary
+                        stateList.Add(state);
+
+                    }
+                    // Now load this collection into a StateDictionary
+                    this.stateCodes = new StateDictionary(stateList);
+                    return true;
+                }
+            }
+            catch(FileNotFoundException ex)
+            {
+                Console.WriteLine($"Unable to load date file{ex.FileName}. Error was{ex.Message}");
+                this.stateCodes = new StateDictionary(new List<State>()); 
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"File load failed with error {ex.Message}");
+                return false;
+            }
+            
         }
 
         /// <summary>

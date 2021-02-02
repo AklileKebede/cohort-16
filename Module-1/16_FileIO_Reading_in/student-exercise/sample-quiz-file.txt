@@ -1,2 +1,4 @@
 What color is the sky?|Yellow|Blue*|Green|Red
 What are Cleveland's odds of winning a championship?|Not likely*|Highly likely|Fat chance|Who cares??
+What is C in Greek Alphabet?|Alpha|Gamma*|Omircon|Rho
+What is 11PM in militery time?|11:00|13:00|20:00|23:00*

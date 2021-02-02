@@ -45,7 +45,7 @@ namespace Lecture.Aids
             string extension = Path.GetExtension(path);
 
             // Change the extension in the path variable to .cs
-            Path.ChangeExtension(path, ".cs");
+            string newPath= Path.ChangeExtension(path, ".cs");
         }
 
         public void UsingPathForTemporaryFolders()
