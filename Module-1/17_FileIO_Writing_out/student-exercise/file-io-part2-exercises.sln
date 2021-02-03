@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2016
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSplitter", "FileSplitter\FileSplitter.csproj", "{0DD501BA-FFC4-4442-B6E2-43010041859B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileSplitter", "FileSplitter\FileSplitter.csproj", "{0DD501BA-FFC4-4442-B6E2-43010041859B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FizzWriter", "FizzWriter\FizzWriter.csproj", "{DBAC6357-FCF1-41C7-A6AB-44AE1C9C1C1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FizzWriter", "FizzWriter\FizzWriter.csproj", "{DBAC6357-FCF1-41C7-A6AB-44AE1C9C1C1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FizzWriter_Test", "FizzWriter_Test\FizzWriter_Test.csproj", "{B69497BB-FA6D-4F97-950D-C894ED27EFDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DBAC6357-FCF1-41C7-A6AB-44AE1C9C1C1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBAC6357-FCF1-41C7-A6AB-44AE1C9C1C1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBAC6357-FCF1-41C7-A6AB-44AE1C9C1C1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B69497BB-FA6D-4F97-950D-C894ED27EFDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B69497BB-FA6D-4F97-950D-C894ED27EFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B69497BB-FA6D-4F97-950D-C894ED27EFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B69497BB-FA6D-4F97-950D-C894ED27EFDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

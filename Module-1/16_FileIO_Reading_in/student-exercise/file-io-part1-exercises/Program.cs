@@ -9,10 +9,10 @@ namespace file_io_part1_exercises
         static void Main(string[] args)
         {
             Console.WriteLine("Enter the fully qualified name of the file to read in for quiz questions:");
-            //string questionFile = Console.ReadLine();
-            string questionsFile = @"C:\Users\Student\git\aklilekebede-c\Module-1\16_FileIO_Reading_in\student-exercise\sample-quiz-file.txt";
+            string questionFile = Console.ReadLine();
+            //string questionsFile = @"C:\Users\Student\git\aklilekebede-c\Module-1\16_FileIO_Reading_in\student-exercise\sample-quiz-file.txt";
 
-            using (StreamReader reader = new StreamReader(questionsFile))
+            using (StreamReader reader = new StreamReader(questionFile))
             {
                 while (!reader.EndOfStream)
                 {

@@ -21,9 +21,9 @@ namespace Lecture.Aids
 
             watch.Start();
 
-            for (int i = 0; i < 15000; i++)
+            for (int i = 0; i < 15000; i++)//Openes the file 15000 times to write "SLOW"
             {
-                using (StreamWriter sw = new StreamWriter("slow-file.txt", true))
+                using (StreamWriter sw = new StreamWriter("slow-file.txt", true))// This opens the file and closes it
                 {
                     sw.WriteLine("SLOW");
                 }
@@ -45,9 +45,9 @@ namespace Lecture.Aids
             watch.Start();
 
 
-            using (StreamWriter sw = new StreamWriter("fast-file.txt", true))
+            using (StreamWriter sw = new StreamWriter("fast-file.txt", true))// Opens the file and closes it after the loop is over
             {
-                for (int i = 0; i < 15000; i++)
+                for (int i = 0; i < 15000; i++)// Write "FAST" 15000 times
                 {
                     sw.WriteLine("FAST");
                 }

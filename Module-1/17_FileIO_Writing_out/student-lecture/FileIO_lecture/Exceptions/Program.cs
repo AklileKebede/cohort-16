@@ -12,6 +12,21 @@ namespace Exceptions
             * try/catch blocks will also catch Exceptions that are 
             * thrown from method called further down the stack 
             */
+            Console.WriteLine("About to call DoSomethingDangerous");
+            try
+            {
+                int answer = DoSomethingDangerous();
+                Console.WriteLine($"The answer is {answer}");
+               
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Something went wrong!{ex.Message}");
+            }
+            finally
+            {
+                Console.WriteLine("I'm in the 'finally' block of Main");
+            }
             #endregion
 
             #region DoMathFun
@@ -43,10 +58,53 @@ namespace Exceptions
             Console.ReadKey();
         }
 
-        private static int DoSomethingDangerous(int a, int b)
+        private static int GetInteger(string prompt)
         {
-            int result = a / b;
+            int result = 0;
+            bool gotNumber = false;
+            while (!gotNumber)
+            {
+                try
+                {
+                    Console.Write(prompt);
+                    result = int.Parse(Console.ReadLine());// Console.ReadLine always return string, int.Parse changes it to an int.
+                    gotNumber = true;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Input data is not compatible");
+                }
+            }
+
             return result;
+        }
+
+        private static int DoSomethingDangerous()
+        {
+            try
+            {
+                int i1 = GetInteger("First Integer: ");
+
+                int i2 = GetInteger("Second Integer: ");
+
+                int answer = i1 / i2;
+                Console.WriteLine($"The answer is {answer}");
+                return answer;
+            }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine("You are trying to divid by zero");
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Something went wrong!{ex.Message}");
+                throw;
+            }
+            finally
+            {
+                Console.WriteLine("I'm in the 'finally' block in DoSomethingDangerous");
+            }
         }
 
         private static void DoMathFun()
