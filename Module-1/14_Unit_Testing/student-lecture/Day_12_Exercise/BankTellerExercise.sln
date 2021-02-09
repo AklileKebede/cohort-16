@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankTellerExercise", "BankTellerExercise\BankTellerExercise.csproj", "{CDE8D6A8-3772-4EA8-A17B-00358EF5B2D4}"
 EndProject
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankTellerExerciseTests", "BankTellerExerciseTests\BankTellerExerciseTests.csproj", "{52B4FD3A-37B4-4FE4-862A-293683A1C85C}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankTellerExerciseTest", "BankTellerExerciseTest\BankTellerExerciseTest.csproj", "{581D61DA-D5F5-4EC4-AD7A-7114B1877E12}"
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +21,17 @@ Global
 		{CDE8D6A8-3772-4EA8-A17B-00358EF5B2D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDE8D6A8-3772-4EA8-A17B-00358EF5B2D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDE8D6A8-3772-4EA8-A17B-00358EF5B2D4}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 		{52B4FD3A-37B4-4FE4-862A-293683A1C85C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{52B4FD3A-37B4-4FE4-862A-293683A1C85C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52B4FD3A-37B4-4FE4-862A-293683A1C85C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52B4FD3A-37B4-4FE4-862A-293683A1C85C}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{581D61DA-D5F5-4EC4-AD7A-7114B1877E12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{581D61DA-D5F5-4EC4-AD7A-7114B1877E12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{581D61DA-D5F5-4EC4-AD7A-7114B1877E12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{581D61DA-D5F5-4EC4-AD7A-7114B1877E12}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

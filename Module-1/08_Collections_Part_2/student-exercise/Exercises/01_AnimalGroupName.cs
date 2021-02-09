@@ -38,6 +38,7 @@ namespace Exercises
          */
         public string AnimalGroupName(string animalName)
         {
+<<<<<<< HEAD
             // creat new library
             Dictionary<string, string> animalDictionary = new Dictionary<string, string>()
             {
@@ -72,6 +73,31 @@ namespace Exercises
             return "unknown";
             // if animal name found then retun the kvp.value
             // else return "unknown"
+=======
+            Dictionary<string, string> animals = new Dictionary<string, string>() 
+            { 
+                {"rhino","Crash" },
+                {"giraffe","Tower" },
+                {"elephant","Herd" },
+                {"lion","Pride" },
+                {"crow","Murder" },
+                {"pigeon","Kit" },
+                {"flamingo","Pat" },
+                {"deer","Herd" },
+                {"dog","Pack" },
+                {"crocodile","Float" }
+            };
+
+            if (animalName == null) {
+                return "unknown";
+            }
+            if (animals.ContainsKey(animalName.ToLower())) {
+                return animals[animalName.ToLower()];
+            } else {
+                return "unknown";
+            }
+
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
         }
     }
 }

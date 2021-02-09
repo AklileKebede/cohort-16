@@ -28,7 +28,16 @@ namespace Exceptions
                 Console.WriteLine("I'm in the 'finally' block of Main");
             }
             #endregion
-
+            try
+            {
+                Console.WriteLine("About to call DoSomethingDangerous");
+                int doSomethingDangerousResult = DoSomethingDangerous();
+                Console.WriteLine($"doSomethingDangerous result is {doSomethingDangerousResult}");
+            } catch (Exception ex) {
+                Console.WriteLine("Bad news: in main's catch");
+            } finally {
+                Console.WriteLine("in main's finally");
+            }
             #region DoMathFun
             //DoMathFun();
             //Console.ReadLine();
@@ -58,6 +67,7 @@ namespace Exceptions
             Console.ReadKey();
         }
 
+<<<<<<< HEAD
         private static int GetInteger(string prompt)
         {
             int result = 0;
@@ -77,6 +87,34 @@ namespace Exceptions
             }
 
             return result;
+=======
+        private static int DoSomethingDangerous()
+        {
+            try
+            {
+                Console.Write("First integer:");
+                int i1 = int.Parse(Console.ReadLine());
+
+                Console.Write("Second integer: ");
+                int i2 = int.Parse(Console.ReadLine());
+
+                int answer = i1 / i2;
+                Console.WriteLine($"The answer is {answer}");
+                return answer;
+            } catch (DivideByZeroException dbzException)
+            {
+                return 0;
+            } catch (Exception ex)
+            {
+                Console.WriteLine($"Something went wrong: {ex.Message}");
+                throw;
+            } finally
+            {
+                Console.WriteLine("I'm in the FINALLY block");
+            }
+
+            
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
         }
 
         private static int DoSomethingDangerous()

@@ -17,6 +17,7 @@ namespace CollectionsPart1Lecture
 				"Harry","Ron","Hermione"
 			};
 
+<<<<<<< HEAD
 			
 			
 
@@ -30,23 +31,42 @@ namespace CollectionsPart1Lecture
 				Console.WriteLine(characters[i]);
 			}
             
+=======
+			List<string> characters;
+			characters = new List<string>() 
+			{
+				"Harry",
+				"Ron",
+				"Hermione"
+			};
+
+			//add more to the end of the list
+			characters.Add("Severus");
+			characters.Add("Albus");
+
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 
 			Console.WriteLine("####################");
 			Console.WriteLine("Lists are ordered");
 			Console.WriteLine("####################");
-
+			Console.WriteLine(characters[1]);
 
 			Console.WriteLine("####################");
 			Console.WriteLine("Lists allow duplicates");
 			Console.WriteLine("####################");
+<<<<<<< HEAD
 			
 			// with lists we can have duplicates
 			characters.Add("Harry"); 
+=======
+			characters.Add("Harry");
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 
 
 			Console.WriteLine("####################");
 			Console.WriteLine("Lists allow elements to be inserted in the middle");
 			Console.WriteLine("####################");
+<<<<<<< HEAD
 			
 			// Insert- adds a value to a specific index, everything else gets shifted down the list
 			characters.Insert(1, "Hagrid");
@@ -57,13 +77,26 @@ namespace CollectionsPart1Lecture
 			characters.AddRange(slitheren);
 			//InsertRange adds collection to a specific index of slitheren
 			characters.InsertRange(4, slitheren);
+=======
+			characters.Insert(1, "Hagrid");
+
+			//add a array into the list
+			string[] slytherins = new string[] { "Draco", "Crabbe", "Goyle"};
+			characters.AddRange(slytherins);
+
+			//insert an arry in the middle
+			string[] ravenclaw = new string[] { "Luna"};
+			characters.InsertRange(7, ravenclaw);
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 
 			
 
 			Console.WriteLine("####################");
 			Console.WriteLine("Lists allow elements to be removed by index");
 			Console.WriteLine("####################");
+			characters.RemoveAt(1);
 
+<<<<<<< HEAD
 			// .RemoveAt removes
 			characters.RemoveAt(1);
 			// .Remove- the first value it comes to
@@ -75,35 +108,58 @@ namespace CollectionsPart1Lecture
 
             Console.WriteLine($"Is Hermione in the list? {characters.Contains("Hermione")}");
 			Console.WriteLine($"Is Draco in the list? {characters.Contains("Draco")}");
+=======
+			
+			Console.WriteLine("####################");
+			Console.WriteLine("Find out if something is already in the List");
+			Console.WriteLine("####################");
+            Console.WriteLine($"Is Hermione in the list? {characters.Contains("Hermione")}");
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 
 			Console.WriteLine("####################");
 			Console.WriteLine("Find index of item in List");
 			Console.WriteLine("####################");
+<<<<<<< HEAD
 
 			Console.WriteLine($"Where is Hermione in the list? {characters.IndexOf("Hermione")}");
 			Console.WriteLine($"Where is Draco in the list? {characters.IndexOf("Draco")}");
 
+=======
+			Console.WriteLine($"Where is Draco in the list? {characters.IndexOf("Draco")}");
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 
 			Console.WriteLine("####################");
 			Console.WriteLine("Lists can be turned into an array");
 			Console.WriteLine("####################");
+<<<<<<< HEAD
 
 			string[] charachtersAsArray = characters.ToArray();
 			// Creat a new list from that array
 			List<string> newList = new List<string>(charachtersAsArray);
+=======
+			string[] charactersAsArray = characters.ToArray();
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 
 			Console.WriteLine("####################");
 			Console.WriteLine("Lists can be sorted");
 			Console.WriteLine("####################");
+<<<<<<< HEAD
             // Print the list with separator "," 
 			Console.WriteLine(string.Join(",",characters));
 			// .Sort only sorts by alphabetic order
 			characters.Sort();
             Console.WriteLine(string.Join(",",characters));
+=======
+			characters.Sort();
+			
+
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 
 			Console.WriteLine("####################");
 			Console.WriteLine("Lists can be reversed too");
 			Console.WriteLine("####################");
+			characters.Reverse();
+
 
 			//.Reverse will only reverse the list and not sort it
 			characters.Reverse();
@@ -113,6 +169,7 @@ namespace CollectionsPart1Lecture
 			Console.WriteLine("####################");
 			Console.WriteLine();
 
+<<<<<<< HEAD
 			// Print all of teh characters
 
 			// The For way...
@@ -173,6 +230,36 @@ namespace CollectionsPart1Lecture
 					i--; // if we remove a value then it's indexs has went up, and to fix the i++
 				}
 			}
+=======
+			//print the list by looping
+			for (int i = 0; i < characters.Count; i++)
+			{
+				Console.WriteLine(characters[i]);
+			}
+
+			
+			foreach (string character in characters) {
+				Console.WriteLine($"{character}");
+            }
+            Console.WriteLine("-------");
+			characters.Clear();
+            Console.WriteLine(characters.Count);
+			foreach (string character in characters)
+			{
+				Console.WriteLine($"{character}");
+			}
+
+
+
+			List<int> scores = new List<int>() { 45,55,65,75};
+			for (int i=0;i<scores.Count;i++) {
+				if (scores[i]==55) {
+					scores.Remove(55);
+					i--;
+                }
+                
+            }
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 		}
 	}
 }

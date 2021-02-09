@@ -11,8 +11,13 @@ namespace States.CLI
     /// </summary>
     class MainMenu : ConsoleMenu
     {
+<<<<<<< HEAD
         private const string US_FILE = @"..\..\..\USStates.txt"; // With @
         private const string CANADA_FILE = "..\\..\\..\\CanadianProvinces.txt"; // Because @ is missing
+=======
+        private const string US_FILE = @"../../../USStates.txt";
+        private const string CANADA_FILE = @"../../../CanadianProvinces.txt";
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 
         private string stateOrProvince = "state";
 
@@ -25,7 +30,7 @@ namespace States.CLI
         /// </summary>
         public MainMenu()
         {
-            // TODO 03: Examine the main menu
+            
 
             // These are the menu options. the ".AddOption" syntax is called "chaining" of commands.
             AddOption("Choose Input File", SelectInputFile)
@@ -117,6 +122,7 @@ namespace States.CLI
         private bool LoadStateDictionary(string fileName)
         {
             List<State> stateList = new List<State>();
+<<<<<<< HEAD
             //{
             //    new State("OH", "Ohio", "Cleveland", "Timberlake"),
             //    new State("FL", "Florida", "Disney World", "Shady Oaks Retirement Community")
@@ -167,6 +173,36 @@ namespace States.CLI
                 return false;
             }
             
+=======
+
+            try {
+                using (StreamReader reader = new StreamReader(fileName + "s"))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        string input = reader.ReadLine();
+                        string[] fields = input.Split("|");
+                        string stateName = fields[0];
+                        string stateCode = fields[1];
+                        string capitalCity = fields[2];
+                        string largestCity = fields[3];
+
+                        State currentState = new State(stateCode, stateName, capitalCity, largestCity);
+                        stateList.Add(currentState);
+                    }
+                }
+                // Now load this collection into a StateDictionary
+                this.stateCodes = new StateDictionary(stateList);
+                return true;
+            } catch (FileNotFoundException fnfException) {
+                Console.WriteLine($"Unable to load the data file {fnfException.FileName}. The error was {fnfException.Message}");
+                return false;
+            } catch (Exception ex) {
+                Console.WriteLine($"FIle load failed with an error: {ex.Message}");
+                return false;
+            }
+
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
         }
 
         /// <summary>

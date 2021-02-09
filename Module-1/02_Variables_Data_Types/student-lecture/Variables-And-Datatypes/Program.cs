@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Variables_And_Datatypes
 {
@@ -12,14 +13,25 @@ namespace Variables_And_Datatypes
 		    1. Create a variable to hold an int and call it numberOfExercises.
 			Then set it to 26.
 		    */
+<<<<<<< HEAD
             int numberOfExercises = 26;
             Console.WriteLine(numberOfExercises);
 
+=======
+            int numberOfExercises;
+            numberOfExercises = 1;
+            Console.WriteLine(numberOfExercises);
+            
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
             /*
             2. Create a variable to hold a double and call it half.
                 Set it to 0.5.
             */
+<<<<<<< HEAD
             double half = 0.5;
+=======
+            double half = .5;
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
             Console.WriteLine(half);
 
             /*
@@ -50,24 +62,40 @@ namespace Variables_And_Datatypes
             /*
             7. Create and set a variable that holds your name.
             */
+<<<<<<< HEAD
             string myName = "Aklile";
             Console.WriteLine(myName);
+=======
+            string myName = "Ben";
+
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
             /*
             8. Create and set a variable that holds the number of buttons on your mouse.
             */
             int numberOfMouseButtons = 3;
+<<<<<<< HEAD
             Console.WriteLine(numberOfMouseButtons);
+=======
+
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
             /*
             9. Create and set a variable that holds the percentage of battery left on
             your phone.
             */
+<<<<<<< HEAD
             double batteryPercentageLeft = 65;
             Console.WriteLine(batteryPercentageLeft);
+=======
+            int batteryLife = 3;
+
+
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
             /* EXPRESSIONS */
 
             /*
             10. Create an int variable that holds the difference between 121 and 27.
             */
+<<<<<<< HEAD
             int difference = 121 - 27;
             Console.WriteLine(difference);
             /*
@@ -80,18 +108,40 @@ namespace Variables_And_Datatypes
             */
             myName = "Aklile Kebede";
 
+=======
+            int diff10 = 121 - 27;
+            Console.WriteLine(diff10);
+
+            /*
+            11. Create a double that holds the addition of 12.3 and 32.1.
+            */
+            double addition11 = 12.3 + 32.1;
+            Console.WriteLine(addition11);
+            
+
+            /*
+            12. Create a string that holds your full name.
+            */
+            string myFullName = "Ben Kennedy";
+            Console.WriteLine(myFullName);
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
             /*
             13. Create a string that holds the word "Hello, " concatenated onto your
             name from above.
             */
             string greeting = "Hello, " + myName;
             Console.WriteLine(greeting);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
             /*
             14. Add a " Esquire" onto the end of your full name and save it back to
             the same variable.
             */
             greeting = greeting + " Esquire";
             Console.WriteLine(greeting);
+<<<<<<< HEAD
             /*
             15. Now do the same as exercise 14, but use the += operator.
             */
@@ -103,6 +153,20 @@ namespace Variables_And_Datatypes
             string saw = "Saw";
             saw += 2;
             Console.WriteLine(saw);
+=======
+
+
+            /*
+            15. Now do the same as exercise 14, but use the += operator.
+            */
+            greeting += " Esquire";
+
+            /*
+            16. Create a variable to hold "Saw" and add a 2 onto the end of it.
+            */
+            string movie = "Saw" + 2;
+            Console.WriteLine(movie);
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
             /*
             17. Add a 0 onto the end of the variable from exercise 16.
             */

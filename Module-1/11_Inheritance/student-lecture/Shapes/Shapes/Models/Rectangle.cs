@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+<<<<<<< HEAD
 namespace Shapes.Models
 {
     public class Rectangle : Shape2D
@@ -27,6 +28,28 @@ namespace Shapes.Models
             {
                 return (2 * Width) + (2 * Height);
             }
+=======
+namespace Shapes.Models {
+    public class Rectangle : Shape2D {
+        public int Width { get; set; }
+        public int Height { get; set; }
+
+        public override int Area { 
+            get {
+                return this.Width * this.Height;
+            }
+        }
+
+        public override int Perimeter { 
+            get {
+                return (2 * this.Width) + (2 * this.Height);
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"A {Color} Rectangle with dimension {Width} x {Height}, at location ({X}, {Y})";
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
         }
         public override void Draw()
         {
@@ -45,12 +68,20 @@ namespace Shapes.Models
                 string output;
 
                 // Adjust the width based on the Skew factor
+<<<<<<< HEAD
                 if (y == 1 || y == heightLines)
                 {
                     // first and last line
                     output = new string(edgeSymbol, widthCharacters);
                 }
                 else
+=======
+                if (y == 1 || y == Height)
+                {
+                    // first and last line
+                    output = new string(edgeSymbol, widthCharacters);
+                } else
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
                 {
                     output = edgeSymbol + new string(IsFilled ? fillSymbol : ' ', Math.Max(widthCharacters - 2, 0)) + edgeSymbol;
                 }
@@ -62,9 +93,19 @@ namespace Shapes.Models
             ResetConsoleColor();
 
         }
+<<<<<<< HEAD
         public override string ToString()
         {
             return $"A {Color} Rectangle with dimension {Width} x {Height}, at location ({X},{Y}).";
         }
+=======
+
+        public Rectangle(int x, int y, ConsoleColor color, bool isFilled, int width, int height) : base(x, y, color,isFilled) {
+            this.Width = width;
+            this.Height = height;
+        }
+
+        
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
     }
 }

@@ -1,12 +1,21 @@
 ﻿using System;
+<<<<<<< HEAD
 using System.IO;
+=======
+using System.Collections.Generic;
+using System.IO;
+
+using Assessment.Models;
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 
 namespace Assessment
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
+<<<<<<< HEAD
             // TODO: Create instances of your object here and call methods.
             Car Cobalt = new Car(2008, "Shevy", false);
             Car Forester = new Car(1999, "Subaru", true);
@@ -32,6 +41,10 @@ namespace Assessment
                     Console.WriteLine(year);
                 }
             }
+=======
+          // TODO: Create instances of your object here and call methods.
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
         }
+
     }
 }

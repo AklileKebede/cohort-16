@@ -18,8 +18,11 @@ namespace Shapes
     {
         #region Fields
 
-        // TODO 10 Create the private list of shapes. 
+        
         // This is our "drawing"; it is what the user is building up while running the program.
+        
+        
+        List<Shape2D> shapes = new List<Shape2D>();
 
         List<Shape2D> shapes = new List<Shape2D>();
 
@@ -71,9 +74,15 @@ namespace Shapes
             ConsoleColor color = GetColor();
             bool filled = GetBool("Do you want the shape filled? ", false);
 
+<<<<<<< HEAD
             // TODO 11 Add a new Circle to the collection
             Circle circle = new Circle(x, y, color, filled, radius);
             shapes.Add(circle);
+=======
+            
+            Circle aCircle = new Circle(x, y, color, filled, radius);
+            this.shapes.Add(aCircle);
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 
             Console.WriteLine("New Circle was added");
             return MenuOptionResult.WaitAfterMenuSelection;
@@ -89,8 +98,15 @@ namespace Shapes
             ConsoleColor color = GetColor();
             bool filled = GetBool("Do you want the shape filled? ", false);
 
+<<<<<<< HEAD
             // TODO 12 Add a new Rectangle to the collection
             shapes.Add(new Rectangle(x, y, color, filled, width, height));
+=======
+            Rectangle rectangle = new Rectangle(x,y,color,filled,width,height);
+            this.shapes.Add(rectangle);
+
+
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 
             Console.WriteLine("New Rectangle was added");
             return MenuOptionResult.WaitAfterMenuSelection;
@@ -101,8 +117,13 @@ namespace Shapes
         /// </summary>
         private MenuOptionResult DrawCanvas()
         {
+<<<<<<< HEAD
             // TODO 13 Loop through the shapes and Draw each one.
             foreach (Shape2D shape in shapes)
+=======
+            
+            foreach (Shape2D shape in this.shapes) 
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
             {
                 shape.Draw();
             }
@@ -118,11 +139,16 @@ namespace Shapes
         {
             Console.WriteLine("Shapes:");
 
+<<<<<<< HEAD
             // TODO 14 Display the list of shapes
             foreach (Shape2D shape in shapes)
             {
                
                 Console.WriteLine(shape);  // If you pass an object "obj" int CW, CW calls obj.ToString() to determine what to display.
+=======
+            foreach (Shape2D shape in this.shapes) {
+                Console.WriteLine(shape);
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
             }
 
            
@@ -132,8 +158,13 @@ namespace Shapes
 
         private MenuOptionResult ClearCanvas()
         {
+<<<<<<< HEAD
             // TODO 15 Clear the list of shapes
             shapes.Clear();
+=======
+            this.shapes.Clear();
+
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 
             Console.WriteLine("Canvas was cleared");
             return MenuOptionResult.WaitAfterMenuSelection;

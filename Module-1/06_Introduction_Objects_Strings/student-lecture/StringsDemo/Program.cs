@@ -7,7 +7,13 @@ namespace StringsDemo
         static void Main(string[] args)
         {
             // Use our custom Person data type (class)
+<<<<<<< HEAD
           //  CreatePerson();
+=======
+            Person p = CreatePerson();
+            Console.WriteLine(p.FirstName);
+
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 
             string name = "Ada Lovelace";
 
@@ -19,6 +25,7 @@ namespace StringsDemo
             //      of name.
             // Output: A
             // Output: e
+<<<<<<< HEAD
             Console.WriteLine($"First char: {name[0]}, Last char: {name[name.Length-1]}");
             // Console.WriteLine("First and Last Character. ");
 
@@ -71,6 +78,49 @@ namespace StringsDemo
             name = name.Replace("Ada","Ada, Countes of Lovelace");
             Console.WriteLine(name);
             // Console.WriteLine(name);
+=======
+            char firstChar = name[0];
+            char lastChar = name[name.Length - 1];
+            Console.WriteLine($"First and Last Character: {firstChar}-{lastChar} ");
+
+            // 2. How do we write code that prints out the first three characters
+            // Output: Ada
+            string first3OfName = name.Substring(0, 3);
+            Console.WriteLine($"First 3 characters: {first3OfName}");
+
+            // 3. Now print out the first three and the last three characters
+            // Output: Adaace
+            Console.WriteLine($"Last 3 characters: {name.Substring(0,3)}-{name.Substring(name.Length-3,3)}");
+
+            // 4. What about the last word?
+            // Output: Lovelace
+            string[] peicesOfName = name.Split(" ");
+            Console.WriteLine($"Last Word: {peicesOfName[peicesOfName.Length-1]}");
+
+            // 5. Does the string contain inside of it "Love"?
+            // Output: true
+            string[] words = name.Split(" ");
+            Console.WriteLine("Contains \"Love\"");
+
+            // 6. Where does the string "lace" show up in name?
+            // Output: 8
+            int indexOfLace = name.IndexOf("lace");
+            Console.WriteLine($"Index of \"lace\": {indexOfLace}");
+
+            // 7. How many 'a's OR 'A's are in name?
+            // Output: 3
+            int countOfA = 0;
+            for (int i=0;i<name.Length;i++) {
+                if (name.Substring(i,1).ToLower() == "a") {
+                    countOfA++;
+                }
+            }
+            Console.WriteLine($"Number of \"a's\": {countOfA}");
+
+            // 8. Replace "Ada" with "Ada, Countess of Lovelace"
+            name = name.Replace("Ada", "Ada, Countess of Lovelace");
+            Console.WriteLine(name);
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 
             // 9. Set name equal to null.
             name = null;
@@ -78,13 +128,21 @@ namespace StringsDemo
             // 10. If name is equal to null or "", print out "All Done".
             if (string.IsNullOrEmpty(name))
             {
+<<<<<<< HEAD
                 Console.WriteLine("All Done.");
             }
             // Console.ReadLine();
+=======
+                Console.WriteLine("All Done");
+            }
+
+
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
         }
 
-        public static void CreatePerson()
+        public static Person CreatePerson()
         {
+<<<<<<< HEAD
             // Create a new Person object from the Person class
 
                 //1. Declare
@@ -104,6 +162,12 @@ namespace StringsDemo
             student.LastName = "Zaviezo";
             student.HightInches = 72;
 
+=======
+            Person instructor;
+            instructor = new Person();
+            instructor.FirstName = "Ben";
+            return instructor;
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
         }
     }
 

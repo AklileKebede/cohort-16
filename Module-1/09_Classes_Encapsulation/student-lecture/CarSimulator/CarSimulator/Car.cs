@@ -9,8 +9,8 @@ namespace CarSimulator
         /*************************************************************
          * Private fields (not properties)
          * **********************************************************/
-        private const int MAX_SPEED = 120;
-
+        public int maxSpeed = 120;
+        
         /*************************************************************
          * Automatic properties
          * Can be set or get at any time. 
@@ -18,7 +18,7 @@ namespace CarSimulator
         // Automatic property to hold the color of the Car
         public string Color { get; set; }
 
-
+  
         /*************************************************************
          * Derived properties
          * Only has a Get, and that value is calculated based on other properties 
@@ -91,7 +91,11 @@ namespace CarSimulator
         // Vehicle Model (Corvette). Never changes
         public string Model { get; set; }// remove 'set;' to make read only
         // Year the car was built. Never changes.
+<<<<<<< HEAD
         public int Year { get; set; }// remove 'set;' to make read only
+=======
+        public int Year { get; }
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 
 
         /***************************************************************************
@@ -127,13 +131,12 @@ namespace CarSimulator
         // this method because Speed has a "private set".
         public void Accelerate() 
         {
-            if (this.Speed < MAX_SPEED)
+            if (this.Speed < maxSpeed)
             {
                 this.Speed++;
             }
             return;
         }
-
 
         /****************************************************************************
          * Method overload
@@ -143,7 +146,7 @@ namespace CarSimulator
         public void Accelerate(int mph)
         {
             int targetSpeed = this.Speed + mph;
-            if (targetSpeed >= 0 && targetSpeed <= MAX_SPEED)
+            if (targetSpeed >= 0 && targetSpeed <= maxSpeed)
             {
                 this.Speed += mph;
             }

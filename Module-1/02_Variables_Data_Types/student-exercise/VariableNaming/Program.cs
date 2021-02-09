@@ -26,6 +26,7 @@ namespace VariableNaming
             int numberOfNests = 3;
             int numberOfExtraBirds = numberOfBirds - numberOfNests;
 
+<<<<<<< HEAD
             Console.WriteLine("Q.1 & Q.2 were examplese");
 
             Console.WriteLine(" Q.3: 3 raccoons are playing in the woods. 2 go home to eat dinner.\nHow"
@@ -176,6 +177,110 @@ namespace VariableNaming
             int icecreamConesBought = 2;
             decimal boughtIcecreamCones = oneIcecreamConeCost * icecreamConesBought;
             Console.WriteLine("Mrs. Hilt paid $" + boughtIcecreamCones);
+=======
+            Console.WriteLine(5/3);
+            Console.WriteLine((double)5/3);
+            Console.WriteLine((decimal)5 / 3);
+            Console.WriteLine((double)3 / 5);
+            Console.WriteLine((decimal)3 / 5);
+
+            /*
+            3. 3 raccoons are playing in the woods. 2 go home to eat dinner. How
+            many raccoons are left in the woods?
+            */
+
+            /*
+            4. There are 5 flowers and 3 bees. How many less bees than flowers?
+            */
+
+            /*
+            5. 1 lonely pigeon was eating breadcrumbs. Another pigeon came to eat
+            breadcrumbs, too. How many pigeons are eating breadcrumbs now?
+            */
+
+            /*
+            6. 3 owls were sitting on the fence. 2 more owls joined them. How many
+            owls are on the fence now?
+            */
+
+            /*
+            7. 2 beavers were working on their home. 1 went for a swim. How many
+            beavers are still working on their home?
+            */
+
+            /*
+            8. 2 toucans are sitting on a tree limb. 1 more toucan joins them. How
+            many toucans in all?
+            */
+
+            /*
+            9. There are 4 squirrels in a tree with 2 nuts. How many more squirrels
+            are there than nuts?
+            */
+
+            /*
+            10. Mrs. Hilt found a quarter, 1 dime, and 2 nickels. How much money did
+            she find?
+            */
+
+            /*
+            11. Mrs. Hilt's favorite first grade classes are baking muffins. Mrs. Brier's
+            class bakes 18 muffins, Mrs. MacAdams's class bakes 20 muffins, and
+            Mrs. Flannery's class bakes 17 muffins. How many muffins does first
+            grade bake in all?
+            */
+
+            /*
+            12. Mrs. Hilt bought a yoyo for 24 cents and a whistle for 14 cents. How
+            much did she spend in all for the two toys?
+            */
+
+            /*
+            13. Mrs. Hilt made 5 Rice Krispie Treats. She used 8 large marshmallows
+            and 10 mini marshmallows.How many marshmallows did she use
+            altogether?
+            */
+
+            /*
+            14. At Mrs. Hilt's house, there was 29 inches of snow, and Brecknock
+            Elementary School received 17 inches of snow. How much more snow
+            did Mrs. Hilt's house have?
+            */
+
+            /*
+            15. Mrs. Hilt has $10. She spends $3 on a toy truck and $2 on a pencil
+            case. How much money does she have left?
+            */
+
+            /*
+            16. Josh had 16 marbles in his collection. He lost 7 marbles. How many
+            marbles does he have now?
+            */
+
+            /*
+            17. Megan has 19 seashells. How many more seashells does she need to
+            find to have 25 seashells in her collection?
+            */
+
+            /*
+            18. Brad has 17 balloons. 8 balloons are red and the rest are green. How
+            many green balloons does Brad have?
+            */
+
+            /*
+            19. There are 38 books on the shelf. Marta put 10 more books on the shelf.
+            How many books are on the shelf now?
+            */
+
+            /*
+            20. A bee has 6 legs. How many legs do 8 bees have?
+            */
+
+            /*
+            21. Mrs. Hilt bought an ice cream cone for 99 cents. How much would 2 ice
+            cream cones cost?
+            */
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 
             /*
             22. Mrs. Hilt wants to make a border around her garden. She needs 125

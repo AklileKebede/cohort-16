@@ -22,7 +22,10 @@ namespace Shapes
          * (we should rename it to)
         ********************************************************************/
 
+<<<<<<< HEAD
         // List<Shape2D> shapes = new List<Shape2D>(); //<= Original name
+=======
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
         List<IDrawable> drawables = new List<IDrawable>();
         #endregion
 
@@ -34,10 +37,17 @@ namespace Shapes
 
             this.AddOption("Add a Circle", AddCircle)
                 .AddOption("Add a Rectangle", AddRectangle)
+<<<<<<< HEAD
                 .AddOption ("Add Text",AddText)
                 .AddOption("Draw the Canvas", DrawCanvas)
                 .AddOption("List All Shapes", ListShapes)
                 .AddOption("Get Total Area",GetTotalArea)
+=======
+                .AddOption("Add Text", AddText)
+                .AddOption("Draw the Canvas", DrawCanvas)
+                .AddOption("List All Shapes", ListShapes)
+                .AddOption("Get Total Area of All Shapes", GetTotalArea)
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
                 .AddOption("Clear the Canvas", ClearCanvas)
                 .AddOption("Quit", Exit, "Q")
                 .Configure(cfg =>
@@ -116,8 +126,13 @@ namespace Shapes
         /// </summary>
         private MenuOptionResult DrawCanvas()
         {
+<<<<<<< HEAD
             
             foreach (IDrawable drawable in drawables)// TODO 04 We no longer draw shapes.  We draw "things that are drawable"
+=======
+            // TODO 04 We no longer draw shapes.  We draw "things that are drawable"
+            foreach (IDrawable drawable in drawables)
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
             {
                 drawable.Draw();
             }
@@ -129,9 +144,15 @@ namespace Shapes
 
         private MenuOptionResult ListShapes()
         {
+<<<<<<< HEAD
             
             Console.WriteLine("Shapes:");
             foreach (IDrawable drawable in drawables)// TODO 04 We no longer draw shapes.  We draw "things that are drawable"
+=======
+            // TODO 04 We no longer draw shapes.  We draw "things that are drawable"
+            Console.WriteLine("Drawables:");
+            foreach (IDrawable drawable in drawables)
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
             {
                 Console.WriteLine($"\t{drawable}");
             }
@@ -162,14 +183,46 @@ namespace Shapes
             return MenuOptionResult.WaitAfterMenuSelection;
         }
 
+<<<<<<< HEAD
         
+=======
+        /********************************************
+        * TODO 07: Create method *private MenuOptionResult AddText()*
+        *          1. Prompt the user for the text location (x and y)
+        *          1. Prompt the user for the text label
+        *          2. Prompt the user for the text color
+        *          3. Create the new Text object
+        *          4. Add the new Text object to the list of drawables
+        *          5. Report success to the user
+        ********************************************/
+        private MenuOptionResult AddText()
+        {
+            int x = GetInteger("Left (X): ", null, Enumerable.Range(0, 100));
+            int y = GetInteger("Top (Y): ", null, Enumerable.Range(0, 100));
+            ConsoleColor color = GetColor();
+            string label = GetString("Label Text:");
+            drawables.Add(new Text(x, y, color, label));
+            Console.WriteLine("New Text was added");
+            return MenuOptionResult.WaitAfterMenuSelection;
+        }
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
 
         /********************************************
         * TODO 08: Create method to "Get total area" 
         *       private MenuOptionResult ShowTotalArea()
         *   and report it to the user
         ********************************************/
-
+        public MenuOptionResult GetTotalArea() {
+            int totalArea = 0;
+            foreach (IDrawable drawable in this.drawables) {
+                if (drawable is Shape2D) {
+                    Shape2D shape = (Shape2D)drawable;
+                    totalArea += shape.Area;
+                }    
+            }
+            Console.WriteLine($"Total Area: {totalArea}");
+            return MenuOptionResult.WaitAfterMenuSelection;
+        }
 
     }
 }

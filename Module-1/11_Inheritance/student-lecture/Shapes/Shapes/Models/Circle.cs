@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+<<<<<<< HEAD
 namespace Shapes.Models
 {
     public class Circle : Shape2D
@@ -27,6 +28,39 @@ namespace Shapes.Models
             this.Radius = radius;
         }
 
+=======
+namespace Shapes.Models {
+    public class Circle : Shape2D
+    {
+        
+        public int Radius { get; set; }
+
+
+        public override int Area 
+        {
+            get {
+                return (int)Math.Round(Math.PI * (this.Radius * this.Radius),0);
+            }
+        }
+        public override int Perimeter 
+        {
+            get {
+                return (int)Math.Round((2*Math.PI*this.Radius),0);
+            }
+        }
+
+        public Circle (int x, int y, ConsoleColor color, bool isFIlled, int radius) : base (x,y,color,isFIlled)
+        {
+                this.Radius = radius;
+        }
+
+        public override string ToString()
+        {
+            return $"A {Color} Circle with radius {this.Radius}, at location ({X}, {Y})";
+        }
+
+
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
         public override void Draw()
         {
             SetConsoleColor();
@@ -51,8 +85,12 @@ namespace Shapes.Models
                     // Top or bottom line. We make a solid line half the length of the second line (rather than one character)
                     output = new string(edgeSymbol, (secondX / 2));
                     deltaX = output.Length / 2;
+<<<<<<< HEAD
                 }
                 else // All lines except the first and last
+=======
+                } else // All lines except the first and last
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
                 {
                     // given y, calculate x on the circle. Equation for a circle: x*x + y*y = r*r
                     // We know y, so solve for x:  x = Sqrt( r*r - y*y )
@@ -63,11 +101,16 @@ namespace Shapes.Models
                 Console.Write(output);
             }
             ResetConsoleColor();
+<<<<<<< HEAD
 
         }
         public override string ToString()
         {
             return $"A {Color} circle with radius {Radius}, at location ({X},{Y}).";
         }
+=======
+        }
+
+>>>>>>> 2a35320594bb288d1ed7d189c85c5727f0bfcad4
     }
 }
