@@ -76,18 +76,15 @@ SELECT MIN(Population) AS 'Smallest_Country_Population- World'
 	WHERE Population<>0;
 
 -- 11. The average population of cities in the United States.
--- (avgerage city population in USA: 286955.3795)
-SELECT CAST(AVG(population) AS Decimal (10,4)) AS 'AVG City Population- USA'
-	FROM City
-	WHERE CountryCode='USA';
--- Another way:
-SELECT CAST((SUM (population)/239) AS Decimal (10,4)) AS 'AVG City Population- USA'
+-- (average city population in USA: 286955.3795)
+
+SELECT  AVG(CAST(population AS decimal(11,4))) AS 'AVG City Population- USA'
 	FROM City
 	WHERE CountryCode='USA';
 
 -- 12. The average population of cities in China.
 -- (average city population in China: 484720.6997 approx.)
-SELECT CAST(AVG(Population) AS Decimal(10,4))
+SELECT AVG(CAST (Population AS Decimal(11,4))) AS 'AVG City Population- CHN'
 	FROM City
 	WHERE CountryCode='CHN';
 

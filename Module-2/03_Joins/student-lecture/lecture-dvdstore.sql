@@ -1,10 +1,23 @@
 -- ********* INNER JOIN ***********
 
 -- Let's find out who made payment 16666:
+SELECT *
+	FROM payment
+	JOIN customer AS cstmr ON payment.customer_id=cstmr.customer_id
+	WHERE payment.payment_id=16666;
 
 -- Ok, that gives us a customer_id, but not the name. We can use the customer_id to get the name FROM the customer table
+SELECT payment.*, cstmr.first_name, cstmr.last_name
+	FROM payment
+	JOIN customer AS cstmr ON payment.customer_id=cstmr.customer_id
+	WHERE payment.payment_id=16666;
 
 -- We can see that the * pulls back everything from both tables. We just want everything from payment and then the first and last name of the customer:
+SELECT payment.*, cstmr.first_name, cstmr.last_name, rental.rental_date
+	FROM payment
+	JOIN customer AS cstmr ON payment.customer_id=cstmr.customer_id
+	JOIN rental ON payment.rental_id=rental.rental_id
+	WHERE payment.payment_id=16666;
 
 -- But when did they return the rental? Where would that data come from? From the rental table, so let’s join that.
 
