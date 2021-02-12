@@ -20,7 +20,8 @@ SELECT*
 SELECT language_id FROM language WHERE name='English'
 --
 Insert Into film(title,description,release_year,language_id,length)
-	Values ('Euclidean PI','The epic story of Euclid as a pizza delivery boy in ancient Greece',2008,(SELECT language_id FROM language WHERE name='English'),198)
+	Values ('Euclidean PI','The epic story of Euclid as a pizza delivery boy in ancient Greece',2008,(SELECT language_id FROM language WHERE name='English'),198);
+
 -- 3. Hampton Avenue plays Euclid, while Lisa Byway plays his slightly
 -- overprotective mother, in the film, "Euclidean PI". Add them to the film.
 	-- Are there actor_id to the movie 'Euclidean PI'?(NO)
@@ -82,6 +83,13 @@ Insert Into film(title,description,release_year,language_id,length)
 	Insert Into inventory(film_id, store_id)
 		Values((SELECT film_id From film WHERE title='Euclidean PI'),1),
 			  ((SELECT film_id From film WHERE title='Euclidean PI'),2);
+
+	-- Better way
+	Insert Into inventory(film_id,store_id)
+		Select
+			(SELECT film_id From film WHERE title='Euclidean PI'), 
+			store_id
+		From store;
 -- 8. The Feds have stepped in and have impounded all copies of the pirated film,
 -- "Euclidean PI". The film has been seized from all stores, and needs to be
 -- deleted from the film table. Delete "Euclidean PI" from the film table.
@@ -142,5 +150,11 @@ Insert Into film(title,description,release_year,language_id,length)
 -- 12. Check database metadata to determine all constraints of the film id, and
 -- describe any remaining adjustments needed before the film "Euclidean PI" can
 -- be removed from the film table.
+-- NONE, all constraints have been addressed
+
+Select* FROM INFORMATION_SCHEMA.CHECK_CONSTRAINTS
+SELECT* FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
 SELECT *
-	FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+	FROM INFORMATION_SCHEMA.TABLES
+SELECT *
+	FROM INFORMATION_SCHEMA.COLUMNS
