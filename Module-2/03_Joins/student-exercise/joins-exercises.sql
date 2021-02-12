@@ -159,15 +159,24 @@ SELECT TOP 5 film.title, COUNT(rental.rental_id) AS Rentals
 
 -- 19. The top 10 actors ranked by number of rentals of films starring that actor
 -- (#1 should be “GINA DEGENERES” with 753 rentals and #10 should be “SEAN GUINESS” with 599 rentals)
+/*SELECT *-- CONCAT(actor.first_name,' ', actor.last_name) AS ActorName --COUNT(rental.rental_id) AS RentalCount
+	FROM rental
+		JOIN inventory ON inventory.inventory_id=rental.inventory_id
+		JOIN film ON inventory.film_id=film.film_id
+		JOIN film_actor FA ON FA.film_id=film.film_id
+		JOIN actor ON FA.actor_id=actor.actor_id
+	WHERE actor.first_name='Susan' AND actor.last_name='Davis'
+	--GROUP BY CONCAT(actor.first_name,' ', actor.last_name)
+	--ORDER BY RentalCount DESC, ActorName;
+*/
 SELECT TOP 10 CONCAT(actor.first_name,' ', actor.last_name) AS ActorName, COUNT(rental.rental_id) AS RentalCount
 	FROM rental
 		JOIN inventory ON inventory.inventory_id=rental.inventory_id
 		JOIN film ON inventory.film_id=film.film_id
 		JOIN film_actor FA ON FA.film_id=film.film_id
 		JOIN actor ON FA.actor_id=actor.actor_id
-	GROUP BY CONCAT(actor.first_name,' ', actor.last_name)
-	ORDER BY COUNT(rental.rental_id) DESC;
-
+	GROUP BY actor.actor_id, CONCAT(actor.first_name,' ', actor.last_name)
+	ORDER BY RentalCount DESC;
 -- 20. The top 5 “Comedy” actors ranked by number of rentals of films in the “Comedy” category starring that actor
 -- (#1 should have 87 rentals and #5 should have 72 rentals)
 SELECT TOP 5 CONCAT(actor.first_name,' ',actor.last_name) AS ActorName, COUNT(rental.rental_id) AS ComedyRentals
