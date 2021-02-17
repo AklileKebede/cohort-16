@@ -14,18 +14,18 @@ namespace WorldDB.Views
     {
         // TODO 05c: Store the Interfaces to our data objects
 
-
+        private ICountryDAO countryDAO;
 
         /// <summary>
         /// Constructor adds items to the top-level menu
         /// </summary>
-        public WorldDBMenu()
+        public WorldDBMenu(ICountryDAO countryDAO)
         {
             // TODO 05a: Change this constructor to require country dao
             // TODO 15a: Change this constructor to require country-language dao
 
             // TODO 05d: Assign the Interfaces to protected variables so we can use them later
-
+            this.countryDAO = countryDAO;
             // Add options to this menu
             AddOption("List Countries", ListCountries)
                 .AddOption("List Countries on a continent", ListCountriesForContinent)
@@ -42,7 +42,7 @@ namespace WorldDB.Views
         private MenuOptionResult ListCountries()
         {
             // TODO 06: Get the list of countries for all continents (GetCountries)
-            IList<Country> countries = new List<Country>();
+            IList<Country> countries = this.countryDAO.GetCountries();
             SetColor(ConsoleColor.Blue);
             Console.WriteLine(Country.GetHeader());
             foreach (Country country in countries)
@@ -58,7 +58,7 @@ namespace WorldDB.Views
             string continent = GetString("Continent: ", true);
 
             // TODO 07: Get the list of countries for a continent (GetCountries)
-            IList<Country> countries = new List<Country>();
+            IList<Country> countries = countryDAO.GetCountries(continent);
 
             SetColor(ConsoleColor.Green);
             Console.WriteLine(Country.GetHeader());
@@ -75,7 +75,7 @@ namespace WorldDB.Views
             string countryCode = GetString("Enter the Country Code: ");
 
             // TODO 08: Lookup the country (GetCountryByCode) and pass that into the country submenu
-            Country country = null;
+            Country country = countryDAO.GetCountry(countryCode);
             if (country == null)
             {
                 Console.WriteLine($"Sorry, country '{countryCode}' does not exist.");

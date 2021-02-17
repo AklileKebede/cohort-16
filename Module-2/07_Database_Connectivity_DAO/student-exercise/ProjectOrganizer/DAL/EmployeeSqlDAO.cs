@@ -1,6 +1,7 @@
 ﻿using ProjectOrganizer.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,10 @@ namespace ProjectOrganizer.DAL
 {
     public class EmployeeSqlDAO : IEmployeeDAO
     {
+        private const string SQL_GETALLEMPLOYEES = "Select * From Employee";
+        private const string SQL_SEARCHFULLNAME = "Select * From employee Where firstname like @first_name And lastname like @last_name";
+        private const string SQL_GETEMPLOYEESWITHOUTPROJECTS = "Select * From employee Where employee_id not in (select Distinct employee_id From project_employee);";
+
         private string connectionString;
 
         // Single Parameter Constructor
@@ -23,7 +28,61 @@ namespace ProjectOrganizer.DAL
         /// <returns>A list of all employees.</returns>
         public IList<Employee> GetAllEmployees()
         {
-            throw new NotImplementedException();
+            IList<Employee> employees = new List<Employee>();
+            // Things can go wrong, so we will put in 'try{}catch{}'
+            try
+            {
+                //We need the database only while we use it so put it in 'using(){}'
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    // Open a connection to DB
+                    connection.Open();
+
+                    // Command query statement
+                    SqlCommand cmd = new SqlCommand(SQL_GETALLEMPLOYEES, connection);
+
+                    // Execute the query statement and get the results (Reader)
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    // Read the results- while loop because we are expecting many results
+                    while (reader.Read())
+                    {
+                        Employee employee = RowToObject(reader);
+
+                        // Add to list
+                        employees.Add(employee);
+
+                    }
+                    return employees;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Error connecting to data: {ex}");
+                throw;
+            }
+        }
+        /// <summary>
+        /// Repeating part there for Extracted Method
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
+        private static Employee RowToObject(SqlDataReader reader)
+        {
+            // Create new object (instantiate) Employee
+            Employee employee = new Employee();
+
+            // Retrive values from reader object
+            employee.EmployeeId = Convert.ToInt32(reader["EmployeeId"]);
+            employee.DepartmentId = Convert.ToInt32(reader["DepartmentId"]);
+            employee.FirstName = Convert.ToString(reader["FirstName"]);
+            employee.LastName = Convert.ToString(reader["LastName"]);
+            employee.JobTitle = Convert.ToString(reader["JobTitle"]);
+            employee.BirthDate = Convert.ToDateTime(reader["BirthDate"]);
+            employee.Gender = Convert.ToString(reader["Gender"]);
+            employee.HireDate = Convert.ToDateTime(reader["HireDate"]);
+            return employee;
         }
 
         /// <summary>
@@ -36,7 +95,48 @@ namespace ProjectOrganizer.DAL
         /// <returns>A list of employees that matches the search.</returns>
         public IList<Employee> Search(string firstname, string lastname)
         {
-            throw new NotImplementedException();
+            // Instantiat method type
+            IList<Employee> employees = new List<Employee>();
+
+
+            // Try{}Catch{}, because there could be an error when reading DB
+            try
+            {
+                // We need to connect to DB, Close DB once ended using it
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    //Open connection
+                    connection.Open();
+
+                    // Select Command query statement 
+                    SqlCommand cmd = new SqlCommand(SQL_SEARCHFULLNAME, connection);
+                    // Paramater Assignment
+                    cmd.Parameters.AddWithValue("@firstname", "%" + firstname + "%");
+                    cmd.Parameters.AddWithValue("@lastname", "%" + lastname + "%");
+
+                    // Read data and execute query statment
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    // Read row by row, expecting 0 to many
+                    while (reader.Read())
+                    {
+                        // Instantiat object
+                        Employee employee = RowToObject(reader);
+
+                        //Add to list
+                        employees.Add(employee);
+
+                    }
+                    return employees;
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Error: {ex}");
+                throw;
+            }
+
+
         }
 
         /// <summary>
@@ -45,7 +145,8 @@ namespace ProjectOrganizer.DAL
         /// <returns></returns>
         public IList<Employee> GetEmployeesWithoutProjects()
         {
-            throw new NotImplementedException();
+            // Instantiate list
+            IList<Employee> employees = new List<Employee>();
         }
     }
 }
