@@ -11,7 +11,7 @@ namespace ProjectOrganizer.DAL
     public class EmployeeSqlDAO : IEmployeeDAO
     {
         private const string SQL_GETALLEMPLOYEES = "Select * From Employee";
-        private const string SQL_SEARCHFULLNAME = "Select * From employee Where firstname like @first_name And lastname like @last_name";
+        private const string SQL_SEARCHFULLNAME = "Select * From employee Where first_name like CONCAT('%',@firstname,'%') And last_name like CONCAT('%',@lastname,'%')";
         private const string SQL_GETEMPLOYEESWITHOUTPROJECTS = "Select * From employee Where employee_id not in (select Distinct employee_id From project_employee);";
 
         private string connectionString;
@@ -19,7 +19,7 @@ namespace ProjectOrganizer.DAL
         // Single Parameter Constructor
         public EmployeeSqlDAO(string dbConnectionString)
         {
-            connectionString = dbConnectionString;
+            this.connectionString = dbConnectionString;
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace ProjectOrganizer.DAL
             try
             {
                 //We need the database only while we use it so put it in 'using(){}'
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
                     // Open a connection to DB
                     connection.Open();
@@ -63,27 +63,6 @@ namespace ProjectOrganizer.DAL
                 throw;
             }
         }
-        /// <summary>
-        /// Repeating part there for Extracted Method
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <returns></returns>
-        private static Employee RowToObject(SqlDataReader reader)
-        {
-            // Create new object (instantiate) Employee
-            Employee employee = new Employee();
-
-            // Retrive values from reader object
-            employee.EmployeeId = Convert.ToInt32(reader["EmployeeId"]);
-            employee.DepartmentId = Convert.ToInt32(reader["DepartmentId"]);
-            employee.FirstName = Convert.ToString(reader["FirstName"]);
-            employee.LastName = Convert.ToString(reader["LastName"]);
-            employee.JobTitle = Convert.ToString(reader["JobTitle"]);
-            employee.BirthDate = Convert.ToDateTime(reader["BirthDate"]);
-            employee.Gender = Convert.ToString(reader["Gender"]);
-            employee.HireDate = Convert.ToDateTime(reader["HireDate"]);
-            return employee;
-        }
 
         /// <summary>
         /// Find all employees whose names contain the search strings.
@@ -111,8 +90,8 @@ namespace ProjectOrganizer.DAL
                     // Select Command query statement 
                     SqlCommand cmd = new SqlCommand(SQL_SEARCHFULLNAME, connection);
                     // Paramater Assignment
-                    cmd.Parameters.AddWithValue("@firstname", "%" + firstname + "%");
-                    cmd.Parameters.AddWithValue("@lastname", "%" + lastname + "%");
+                    cmd.Parameters.AddWithValue("@firstname", firstname);
+                    cmd.Parameters.AddWithValue("@lastname", lastname );
 
                     // Read data and execute query statment
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -147,6 +126,63 @@ namespace ProjectOrganizer.DAL
         {
             // Instantiate list
             IList<Employee> employees = new List<Employee>();
+
+            // Try{}catch{}, incase we couldn't access DB
+            try
+            {
+                // Create Connection(path) to DB, that will close after use
+                using (SqlConnection connection = new SqlConnection(this.connectionString))
+                {
+                    // Open connection
+                    connection.Open();
+
+                    // Command query statement and get results   // no parameters to assign
+                    SqlCommand command = new SqlCommand(SQL_GETEMPLOYEESWITHOUTPROJECTS, connection);
+
+                    // Excecute query statement
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    // read row by row expecting 0 to many return
+                    while (reader.Read())
+                    {
+                        // Instantiat object
+                        Employee employee = RowToObject(reader);
+
+                        // Add to list
+                        employees.Add(employee);
+                    }
+                    return employees;
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Eror connecting to DB: {ex}");
+                throw;
+            }
+            
+        }
+
+        /// <summary>
+        /// Repeating part there for Extracted Method
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
+        private static Employee RowToObject(SqlDataReader reader)
+        {
+            // Create new object (instantiate) Employee
+            Employee employee = new Employee();
+
+            // Retrive values from reader object
+            employee.EmployeeId = Convert.ToInt32(reader["employee_id"]);
+            employee.DepartmentId = Convert.ToInt32(reader["department_id"]);
+            employee.FirstName = Convert.ToString(reader["first_name"]);
+            employee.LastName = Convert.ToString(reader["last_name"]);
+            employee.JobTitle = Convert.ToString(reader["Job_Title"]);
+            employee.BirthDate = Convert.ToDateTime(reader["birth_date"]);
+            employee.Gender = Convert.ToString(reader["gender"]);
+            employee.HireDate = Convert.ToDateTime(reader["Hire_Date"]);
+            
+            return employee;
         }
     }
 }

@@ -40,8 +40,10 @@ namespace WorldDB
             // TODO 04c: Create an ICountryDAO interface
             ICountryDAO countryDAO = new CountrySqlDAO(connectionString);
 
+
             // TODO 10: Create a CitySqlDAO class (GetCitiesByCountryCode)
             // TODO 10a: Create an ICityDAO interface
+            ICityDAO cityDAO = new CitySqlDAO(connectionString);
 
             // TODO 14a: Create a Model for CountryLanguage
             // TODO 14b: Create a CountryLanguageSqlDAO class (GetLanguages(string countryCode))
@@ -49,7 +51,7 @@ namespace WorldDB
 
 
             // TODO 05b: Create a WorldDBMenu, passing in the country dao, and Run it
-            WorldDBMenu menu = new WorldDBMenu(countryDAO);
+            WorldDBMenu menu = new WorldDBMenu(countryDAO, cityDAO);
             menu.Show();
 
             // Say goodbye to the user...

@@ -15,14 +15,16 @@ namespace WorldDB.Views
         private Country country = null;
 
         // TODO 09a: Store the Interfaces to our data objects
-
+        private ICityDAO cityDAO;
 
         /// <summary>
         /// Constructor adds items to the top-level menu
         /// </summary>
-        public CountryMenu(Country country)
+        public CountryMenu(Country country, ICityDAO cityDAO)
         {
             // TODO 09b: Update this constructor to accept appropriate daos, and save them in local variables.
+           
+            this.cityDAO = cityDAO;
 
             // Save the country (which will be used for all country queries
             this.country = country;
@@ -37,6 +39,7 @@ namespace WorldDB.Views
             AddOption($"List Cities in {country.Name}", ListCities)
                 .AddOption($"List Languages in {country.Name}", ListLanguages)
                 .AddOption($"Add a city to {country.Name}", AddCity)
+                .AddOption($"Remove a city", RemoveCity)
                 .AddOption("Back", Exit);
 
             Configure(cfg =>
@@ -45,6 +48,25 @@ namespace WorldDB.Views
                 cfg.SelectedItemForegroundColor = ConsoleColor.Green;
             });
 
+        }
+
+        private MenuOptionResult RemoveCity()
+        {
+            // Prompt the user for a city name
+            string cityName = GetString("Enter the name of the city to remove: ");
+
+            // Call teh DAO to delete a city by name
+            int rowsDeleted = cityDAO.DeleteCity(cityName, country.Code);
+
+            if (rowsDeleted == 0)
+            {
+                Console.WriteLine($"City {cityName}, {country.Code} was not found, and therefore not deleted.");
+            }
+            else
+            {
+                Console.WriteLine($"City {cityName}, {country.Code} was deleted.");
+            }
+            return MenuOptionResult.WaitAfterMenuSelection;
         }
 
         private MenuOptionResult ListLanguages()
@@ -64,7 +86,7 @@ namespace WorldDB.Views
         private MenuOptionResult ListCities()
         {
             // TODO 12: Get the list of cities (GetCitiesByCountryCode)
-            IList<City> cities = new List<City>();
+            IList<City> cities = cityDAO.GetCitiesByCountry(country.Code);
 
             SetColor(ConsoleColor.DarkYellow);
             Console.WriteLine(City.GetHeader());
@@ -84,9 +106,18 @@ namespace WorldDB.Views
             int population = GetInteger($"Population of {name}: ");
 
             // TODO 13a: Create a city object and set its properties
+            City newCity = new City()
+            {
+                Name = name,
+                CountryCode = country.Code,
+                District = district,
+                Population = population
+            };
+
+
 
             // TODO 13b: Add the city (AddCity)
-            int newCityId = 0;
+            int newCityId = cityDAO.AddCity(newCity);
             if (newCityId > 0)
             {
                 Console.WriteLine($"City was added with id {newCityId}.");
@@ -105,9 +136,9 @@ namespace WorldDB.Views
             SetColor(ConsoleColor.Magenta);
 
             // TODO 11: Print a header that shows Country information
-            //Console.WriteLine($"{country.Name,-39} Population: {country.Population:N0}");
-            //Console.WriteLine($"Head of State: {country.HeadOfState, -24} Capital: {country.CapitalId}");
-            //Console.WriteLine(new string('=', 70));
+            Console.WriteLine($"{country.Name,-39} Population: {country.Population:N0}");
+          //  Console.WriteLine($"Head of State: {country.HeadOfState,-24} Capital: {country.CapitalId}");
+            Console.WriteLine(new string('=', 70));
 
 
             ResetColor();
