@@ -10,26 +10,14 @@ using System.Text;
 namespace ProjectOrganizer_IntegrationTests
 {
     [TestClass]
-    public class EmployeeDAO_Test
+    public class EmployeeDAO_Test : DAO_TestBase
     {
-        const string connectionString = "Server=.\\SQLExpress;Database=EmployeeDB_Test;Trusted_Connection=True;";
         private EmployeeSqlDAO dao;
 
         [TestInitialize]
-        public void Arranger()
+        public override void Arrange()
         {
-            string path = "DBSetup.sql";
-
-            string readDBSetup = File.ReadAllText(path);
-
-            using (SqlConnection connection= new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                SqlCommand command = new SqlCommand(readDBSetup, connection);
-                command.ExecuteNonQuery();
-            }
-
+            base.Arrange();
             // Arrange
             //Establish the "known state" of the database
             dao = new EmployeeSqlDAO(connectionString);

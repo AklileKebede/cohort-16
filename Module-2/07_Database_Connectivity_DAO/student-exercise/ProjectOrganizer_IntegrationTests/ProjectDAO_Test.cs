@@ -10,25 +10,14 @@ using System.Text;
 namespace ProjectOrganizer_IntegrationTests
 {
     [TestClass]
-    public class ProjectDAO_Test
+    public class ProjectDAO_Test : DAO_TestBase
     {
-        const string connectionString = "Server=.\\SQLExpress;Database=EmployeeDB_Test;Trusted_Connection=True;";
         private ProjectSqlDAO dao;
 
         [TestInitialize]
-        public void Arranger()
+        public override void Arrange()
         {
-            string path = "DBSetup.sql";
-
-            string readDBSetup = File.ReadAllText(path);
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                SqlCommand command = new SqlCommand(readDBSetup, connection);
-                command.ExecuteNonQuery();
-            }
+            base.Arrange();
 
             // Arrange
             //Establish the "known state" of the database
@@ -61,7 +50,6 @@ namespace ProjectOrganizer_IntegrationTests
         [TestMethod]
         public void CreateProjectTest()
         {
-            Arranger();
 
             Project project = new Project() { ProjectName = "Merge", EndDate = DateTime.Now.Date, StartDate = DateTime.Parse("2008-05-01") };
             //Act
