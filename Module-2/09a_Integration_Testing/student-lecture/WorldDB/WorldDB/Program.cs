@@ -48,7 +48,7 @@ namespace WorldDB
         {
             // Read cities from the database and list the results on the screen.
             // Add a parameter to the query to get the cities for a given country code.
-            string connectionString = "Server=.\\SqlExpress;Database=World;Trusted_Connection=True;";
+            string connectionString= "Server=.\\SqlExpress;Database=World;Trusted_Connection=True;";
 
             Console.Write("Country Code: ");
             string countryCode = Console.ReadLine();
