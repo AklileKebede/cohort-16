@@ -79,11 +79,7 @@ namespace ProjectOrganizer.DAL
 
                     int affectedRows = Convert.ToInt32(command.ExecuteNonQuery());
 
-                    if (affectedRows == 0)
-                    {
-                        return false;
-                    }
-                    return true;
+                    return affectedRows == 1; // returns true if affected reows is 1
                 }
             }
             catch

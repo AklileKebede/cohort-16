@@ -13,6 +13,7 @@ namespace HTTP_Web_Services_GET_lecture.Views
         public MainMenu(string apiUrl)
         {
             // TODO 01: Create the RestClient here...
+            client = new RestClient(apiUrl);
 
             AddOption("List Hotels", ListHotels)
                 .AddOption("List Reviews", ListReviews)
@@ -30,7 +31,12 @@ namespace HTTP_Web_Services_GET_lecture.Views
         private MenuOptionResult ListHotels()
         {
             // Call the api to get hotels (/hotels)
-            Console.WriteLine("Not Implemented");
+            RestRequest request = new RestRequest("hotels");
+
+            IRestResponse<List<Hotel>> response = this.client.Get<List<Hotel>>(request); // We need to specify the type of Get
+
+            // Display the list to the user
+            PrintHotels(response.Data); // Prints the hotel ID and name
 
             return MenuOptionResult.WaitAfterMenuSelection;
         }
@@ -38,15 +44,28 @@ namespace HTTP_Web_Services_GET_lecture.Views
         private MenuOptionResult ListReviews()
         {
             // TODO 02: Call the api to get hotels (/reviews)
-            Console.WriteLine("Not Implemented");
+            RestRequest request = new RestRequest("Reviews");
+
+            IRestResponse<List<Review>> response = this.client.Get<List<Review>>(request); // Gives type list of type review
+
+            // Display the list of reviews
+            PrintReviews(response.Data);
 
             return MenuOptionResult.WaitAfterMenuSelection;
         }
 
         private MenuOptionResult HotelDetails()
         {
+            // Prompet the user for ID of hotel wanted
+            int hotelId= GetInteger("Enter the hotel Id: ");
+
             // TODO 03: Call the api to get hotels (/hotels/{id})
-            Console.WriteLine("Not Implemented");
+            RestRequest request = new RestRequest($"hotels/{hotelId}"); // request is the correct full URL
+
+            IRestResponse<Hotel> response = this.client.Get<Hotel>(request); // Information from the URL we are receiveing
+
+            // Display
+            PrintHotel(response.Data);
 
             return MenuOptionResult.WaitAfterMenuSelection;
         }

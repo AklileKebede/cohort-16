@@ -13,8 +13,9 @@ namespace LocationApp
         }
         private static void Run()
         {
-            int menuSelection;
+            int menuSelection; //hold the user input
             PrintGreeting();
+
             // False if not a number
             if (!int.TryParse(Console.ReadLine(), out menuSelection))
             {

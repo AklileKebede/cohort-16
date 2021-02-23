@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProjectOrganizer.DAL;
 using ProjectOrganizer.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
@@ -69,6 +70,58 @@ namespace ProjectOrganizer_IntegrationTests
             Assert.AreEqual("IT", department.DepartmentName);
            
                        
+        }
+
+        [TestMethod]
+        public void CreateDepartmentTest()
+        {
+            //Arrange
+            // Create a department to insert
+
+            Department department = new Department()
+            {
+                DepartmentName = "My new Department"
+            };
+
+            // Act
+            int newId = dao.CreateDepartment(department);
+
+            // Assert
+
+            // Get back a non-zero  id
+            Assert.AreNotEqual(0, newId);
+
+            // Number of rows should now be 4
+            Assert.AreEqual(4, GetNumberOfRows());
+
+            // Read at the id and make sure the department name is found
+            Assert.AreEqual("My new Department", GetDepartmentNameFromDB(newId));
+        }
+        
+        private int GetNumberOfRows()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand("Select Count(*) from department", connection);
+                return Convert.ToInt32(command.ExecuteScalar());
+
+            }
+        }
+
+        private string GetDepartmentNameFromDB(int departmentId)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand("Select name form department where department_id=@id", connection);
+                command.Parameters.AddWithValue("@id", departmentId);
+                
+                return Convert.ToString(command.ExecuteScalar());
+
+            }
         }
     }
 }

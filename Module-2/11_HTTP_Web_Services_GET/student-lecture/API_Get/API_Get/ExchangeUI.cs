@@ -8,7 +8,7 @@ namespace API_Get
     {
         public void Run()
         {
-            ExchangeRateAPI api = new ExchangeRateAPI();
+            ExchangeRateAPI api = new ExchangeRateAPI(); // Class ExchangeRateAPI.cs
             while (true)
             {
                 Console.Write("Enter Currency Code: ");
