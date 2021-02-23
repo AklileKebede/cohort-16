@@ -41,19 +41,45 @@ namespace HTTP_Web_Services_POST_PUT_DELETE_lecture.DAL
         public Reservation AddReservation(Reservation newReservation)
         {
             // TODO 04: Implement the API call to Post a new Reservation
-            throw new NotImplementedException();
+            RestRequest request = new RestRequest("reservations");
+            
+            // Serilize the request
+            request.AddJsonBody(newReservation);
+
+            // Deserilize response
+            IRestResponse<Reservation> response = client.Post<Reservation>(request);
+
+            CheckResponse(response);
+           
+            return response.Data;
         }
 
         public Reservation UpdateReservation(Reservation reservationToUpdate)
         {
             // TODO 05: Implement the API call to Put an existing Reservation
-            throw new NotImplementedException();
+            RestRequest request = new RestRequest($"reservations/{reservationToUpdate.Id}");
+            request.AddJsonBody(reservationToUpdate);
+
+            IRestResponse<Reservation> response = client.Put<Reservation>(request);
+
+            CheckResponse(response);
+
+            return response.Data;
         }
 
         public bool DeleteReservation(int reservationId)
         {
             // TODO 06: Implement the API call to Delete an existing Reservation
-            throw new NotImplementedException();
+            RestRequest request = new RestRequest($"reservations/{reservationId}");
+            request.AddJsonBody(reservationId);
+
+            // We aren't Deserializing the response
+            IRestResponse response = client.Delete(request);
+
+            CheckResponse(response);
+
+            return true;
+
         }
 
         private void CheckResponse(IRestResponse response)

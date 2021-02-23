@@ -9,6 +9,7 @@ namespace HTTP_Web_Services_POST_PUT_DELETE_lecture.DAL
     {
         private RestClient client;
 
+        // Constracter that takes api_url
         public HotelApiDao(string api_url)
         {
             client = new RestClient(api_url);
@@ -20,15 +21,30 @@ namespace HTTP_Web_Services_POST_PUT_DELETE_lecture.DAL
             IRestResponse<List<Hotel>> response = client.Get<List<Hotel>>(request);
 
             // TODO 02: Handle errors in the Hotel API client. Check statuses and throw an exception if there are errors.
+            CheckResponse(response);
 
             return response.Data;
         }
+
+        private static void CheckResponse(IRestResponse response)
+        {
+            if (response.ResponseStatus != ResponseStatus.Completed)
+            {
+                throw new Exception("Error - Unable to reach the server.");
+            }
+            if (!response.IsSuccessful)
+            {
+                throw new Exception($"Error - Server reeturn error response: {(int)response.StatusCode} - {response.StatusCode}");
+            }
+        }
+
         public List<Hotel> GetHotel(int hotelId)
         {
             RestRequest request = new RestRequest($"hotels/{hotelId}");
             IRestResponse<List<Hotel>> response = client.Get<List<Hotel>>(request);
 
             // TODO 02: Handle errors in the Hotel API client. Check statuses and throw an exception if there are errors.
+            CheckResponse(response);
 
             return response.Data;
         }
@@ -38,6 +54,7 @@ namespace HTTP_Web_Services_POST_PUT_DELETE_lecture.DAL
             IRestResponse<List<Hotel>> response = client.Get<List<Hotel>>(request);
 
             // TODO 02: Handle errors in the Hotel API client. Check statuses and throw an exception if there are errors.
+            CheckResponse(response);
 
             return response.Data;
         }

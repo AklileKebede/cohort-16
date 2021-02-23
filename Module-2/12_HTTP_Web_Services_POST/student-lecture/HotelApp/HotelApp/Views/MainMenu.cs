@@ -98,7 +98,7 @@ namespace HTTP_Web_Services_POST_PUT_DELETE_lecture.Views
                     Reservation addedReservation = reservationDao.AddReservation(reservationToAdd);
                     if (addedReservation != null)
                     {
-                        Console.WriteLine("Reservation successfully added.");
+                        Console.WriteLine($"Reservation successfully added. Your confirmation number is {addedReservation.Id}");
                     }
                     else
                     {
