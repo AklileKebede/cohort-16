@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace HotelReservations.Models
 {
@@ -18,31 +19,44 @@ namespace HotelReservations.Models
         /// <summary>
         /// The id of the hotel this reservation is for
         /// </summary>
+        [Required(ErrorMessage ="The field HotelId is required.")]
         public int HotelId { get; set; }
         /// <summary>
         /// Full name of the guest staying at the hotel
         /// </summary>
+        [Required(ErrorMessage ="The field FullName is required.")]
+        [StringLength(100,ErrorMessage ="Invalid name length.")]
         public string FullName { get; set; }
         /// <summary>
         /// Date of arrival
         /// </summary>
+       [Required(ErrorMessage ="The field Checkin is required.")]
         public DateTime CheckinDate { get; set; }
         /// <summary>
         /// Date of departure
         /// </summary>
+        [Required(ErrorMessage ="The field Checkout is required.")]
         public DateTime CheckoutDate { get; set; }
         /// <summary>
         /// Total number of guests expected to stay overnight in the room.
         /// </summary>
+        [Required]
+        [Range(1,5,ErrorMessage ="Max number of guests is 5")]
         public int Guests { get; set; }
 
-        public Reservation(int? id, int hotelId, string fullName, DateTime checkinDate, DateTime checkoutDate, int guests)
+        public Reservation(int? id, int hotelId, string fullName, DateTime cID, DateTime cOD, int guests)
         {
+            /*
+            if (cID >= cOD) // if (checkinDate >= checkoutDate) //cID will not work but checkinDate will because the name matches. In general this is a bad coding as when running 
+            {
+                throw new Exception("checkout must be after checkin date");
+            }
+            */
             Id = id ?? new Random().Next(100, int.MaxValue);
             HotelId = hotelId;
             FullName = fullName;
-            CheckinDate = checkinDate;
-            CheckoutDate = checkoutDate;
+            CheckinDate = cID;
+            CheckoutDate = cOD;
             Guests = guests;
         }
     }

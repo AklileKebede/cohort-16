@@ -12,10 +12,11 @@ namespace HotelReservations.Controllers
         private IHotelDao hotelDao;
         private IReservationDao reservationDao;
 
-        public HotelsController()
+        public HotelsController(IHotelDao hotelDao, IReservationDao reservation)
+        // if we add these parameters we need to add services.AddTransient that is a Dependency Injection
         {
-            hotelDao = new HotelFakeDao();
-            reservationDao = new ReservationFakeDao();
+            this.hotelDao = hotelDao;
+            this.reservationDao = reservation;
         }
 
         /// <summary>
@@ -35,17 +36,16 @@ namespace HotelReservations.Controllers
         /// <param name="id">The identifier for the hotel</param>
         /// <returns>The hotel (as JSON) if found, 404 if not found.</returns>
         [HttpGet("hotels/{id}")]
-        public Hotel GetHotel(int id)
+        public ActionResult<Hotel> GetHotel(int id)
         {
             // TODO 01: Return 404 if the Id is not found (using NotFound()). Change return type to ActionResult<>
             Hotel hotel = hotelDao.Get(id);
-
-            if (hotel != null)
+            if (hotel == null)
             {
-                return hotel;
+                return NotFound("Hotel doesn't exist");
             }
 
-            return null;
+            return Ok(hotel);
         }
 
         /// <summary>
@@ -61,16 +61,24 @@ namespace HotelReservations.Controllers
         }
 
         // TODO 02: New Feature - Find all reservations by name
-        // /reservations/name=mik
-
+        // /reservations?name=mik
+        //[HttpGet("reservation")]
+        //public ActionResult<List<Reservation>> GetReservations (string name)
+        //{
+        //   return reservationDao.FindByName(name);
+        //}
 
         /// <summary>
         /// Get all reservations for all hotels in the system.
         /// </summary>
         /// <returns>a json array of all reservations.</returns>
         [HttpGet("reservations")]
-        public List<Reservation> GetReservations()
+        public List<Reservation> GetReservations(string name)
         {
+            if (!string.IsNullOrEmpty(name))
+            {
+                return reservationDao.FindByName(name);
+            }
             return reservationDao.List();
         }
 

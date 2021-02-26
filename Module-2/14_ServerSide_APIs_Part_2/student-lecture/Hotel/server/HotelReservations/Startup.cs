@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using HotelReservations.Dao;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -57,8 +58,19 @@ namespace HotelReservations
             // TODO 05: Configure Dependency injection so the controller doesn't have to 
             //          create the DAOs inside the controller.
 
-        }
+            // If someone ask for IhotelDao, give them HotelFakeDao
+            services.AddTransient<IHotelDao, HotelFakeDao>((sp) =>
+            {
+                return new HotelFakeDao();
+            });
 
+            // when you need it run this method
+
+            services.AddTransient<IReservationDao, ReservationFakeDao>((sp) =>
+             {
+                 return new ReservationFakeDao();
+             });
+        }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -82,8 +94,8 @@ namespace HotelReservations
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hotel API V1");
 
-                // To serve SwaggerUI at application's root page, set the RoutePrefix property to an empty string.
-                c.RoutePrefix = "doc";
+                    // To serve SwaggerUI at application's root page, set the RoutePrefix property to an empty string.
+                    c.RoutePrefix = "doc";
             });
 
             app.UseCors("CorsPolicy");
@@ -92,3 +104,4 @@ namespace HotelReservations
         }
     }
 }
+
