@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HotelReservations.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]")] //base url is "/login"
     [ApiController]
     public class LoginController : ControllerBase
     {

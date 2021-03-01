@@ -24,6 +24,7 @@ namespace HotelReservationsClient.DAL
             protected set
             {
                 user = value;
+               
             }
         }
 
@@ -36,6 +37,7 @@ namespace HotelReservationsClient.DAL
             get
             {
                 return (user != null);
+               // return (client.Authenticator != null);
             }
         }
 

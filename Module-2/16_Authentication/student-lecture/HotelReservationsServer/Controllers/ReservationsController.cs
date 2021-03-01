@@ -1,5 +1,6 @@
 ﻿using HotelReservations.Dao;
 using HotelReservations.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -7,6 +8,7 @@ namespace HotelReservations.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     // TODO 07: All methods on this controller require a logged in user, so use the Authorize attribute
     //      at the controller level
 
@@ -40,6 +42,7 @@ namespace HotelReservations.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Authorize(Roles ="admin")] // we can add more then one role separated by comma
         public List<Reservation> GetAllReservations()
         {
             return reservationDao.List();
@@ -63,6 +66,7 @@ namespace HotelReservations.Controllers
         }
 
         [HttpGet("/hotels/{hotelId}/reservations")]
+        [Authorize(Roles = "admin")]
         public List<Reservation> GetReservationsForHotel(int hotelId)
         {
             return reservationDao.FindByHotel(hotelId);
@@ -76,12 +80,14 @@ namespace HotelReservations.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "admin")]
         public Reservation UpdateReservation(Reservation reservation)
         {
             return reservationDao.Update(reservation);
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteReservation(int id)
         {
             if (reservationDao.Delete(id))
