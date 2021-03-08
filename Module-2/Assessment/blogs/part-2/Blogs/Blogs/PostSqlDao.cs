@@ -15,9 +15,28 @@ namespace Blogs
 
         public IList<Post> GetAllPosts()
         {
-            // Implement this method to pull in all posts from database
+            IList<Post> posts = new List<Post>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open(); //Open
 
-            return null;
+                SqlCommand command = new SqlCommand("Select * from blog_posts", connection);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Post post = new Post();
+
+                    post.Name = Convert.ToString(reader["name"]);
+                    post.Body = Convert.ToString(reader["body"]);
+                    post.IsPublished = Convert.ToBoolean(reader["published"]);
+                    post.Created = Convert.ToDateTime(reader["created"]);
+
+                    posts.Add(post);
+                }
+            }
+            return posts;
         }
 
         public void Save(Post newPost)
