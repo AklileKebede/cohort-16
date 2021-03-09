@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linkin Fan Park - InfoForm</title>
+    <link rel="stylesheet" href="/fan-page/style.css">
+</head>
+<body>
+    <header>
+        <h1>Info-Form</h1>
+    </header>
+    <nav>
+        <a href="/fan-page/FanPage.html">Home Page</a>
+    </nav>
+    <main>
+        <h2>Info - Form</h2>
+        <p>Welcome to the Linkin Fan Park, to Join submit your information below:</p>
+        <form method="POST" action="/api/infoForm"> <!--action is a path, if we had one-->
+        <!-- The html method POST will encrypt the data from the form, but a GET isn't encrypted -->
+            <div>
+            <label for="name">Name:</label>
+            <input id="name" name="name" type="text" required/>
+        </div>
+        <div>
+            <label for="email">Email Address:</label>
+            <input type="email" name="email" id="email" required/>
+        </div>
+        <div>
+            <label for="birthday">Date of Birth:</label>
+            <input id="birthday" name="birthday" type="date"/>
+        </div>
+        <div>
+            <label for="reservationTime">Time:</label>
+            <input id="reservationTime" name="reservationTime" type="time"/>
+        </div>
+        <div>
+            <label for="color">Favorite Color:</label>
+            <input id="color" name="color" type="color"/>
+        </div>
+        <div>
+            <label for="number">Favorite Number:</label>
+            <input id="number" name="number" type="number"/>
+        </div>
+        <div>
+            <label for="correctData">Confirm Data is Correct:</label>
+            <input id="correctData" name="correctData" type="checkbox" required/>
+        </div>
+        <div>
+            <input di="submit" type="Submit"/>
+        </div>
+    </form>
+    </main>
+</body>
+</html>
