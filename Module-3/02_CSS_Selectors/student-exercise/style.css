@@ -15,3 +15,130 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+aside
+{
+  /*The aside needs to be set to a fixed position and have a 200px width.*/
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  
+  /*Add a right border to the aside that is 1px, solid, uses color "Blue Border".*/
+  border-right: 1px solid rgba(0, 173, 238, 0.4);
+  /*add a height of 100vh so that the border goes all the way to the bottom of the viewport.*/
+  height: 100vh;
+  /*Add left and right padding of 20px for spacing.*/
+  padding:  0px 20px 0px 20px;
+}
+
+/*Be specific with the img selector so it doesn't affect the other images on the page.*/
+aside > img
+{
+  /*set the img in the aside to have a 120px height and to be a block element.*/
+  display: block;
+  height: 120px;
+  /*set margin: 0 auto;.*/
+  margin: 0 auto;
+}
+
+/*set the main block to have a 200px left margin so it doesn't overlap with the aside.*/
+main 
+{
+  margin-left: 200px;
+  /*add a left and right padding of 20px each*/
+  padding: 0px 20px 0px 20px;
+}
+
+
+/*Create a CSS rule that selects the li elements in the aside.*/
+aside > nav > ul > li 
+{
+  /*Set the list-style property to none, text-align to center, and text-transform to uppercase.*/
+  list-style: none;
+  text-align: center;
+  text-transform: uppercase;
+
+  /*Add a solid 1px bottom border using the color "Blue Border" */
+  border-bottom: 1px solid rgba(0, 173, 238, 0.4);
+  /*set margin to 10px auto. top and bottom margins to 10px and the left and right margins to auto. Auto helps to keep content centered*/
+  margin: 10px auto;
+  /*Add a bottom padding of 10px and set width to 80%*/
+  padding-bottom: 10px;
+  width: 80%;
+  /*add spacing between the links and lines by setting line-height of 2*/
+  line-height: 2;
+}
+
+/*add a new rule that selects the a elements in the lis.*/
+aside > nav > ul > li > a
+{
+  /*Set the text-decoration to none. 
+  Bold the text and set the color to the "Blue" color #00ADEE.*/
+  text-decoration: none;
+  font-weight: bold;
+  color: #00ADEE;
+}
+
+/*You can create another rule that selects the :hover pseudo-class of the a elements,
+ and set the text-decoration property to underline*/
+aside > nav > ul > li > a:hover
+{
+  text-decoration: underline;
+  color: red;
+}
+
+/*set the height for the header to be 120px and the img to be 80%.*/
+main > header
+{
+  height: 120px;
+}
+main > header > img
+{
+  height: 80%;
+}
+
+/*Banner image needs some styling so it doesn't go over the edge of the page.
+Make it a block element with 100% width.*/
+main.banner
+{
+  display: block;
+  width: 100%;
+}
+
+/*The "What We Do", "Our Work", and "Contact Us"
+Create a CSS rule to select the divs in the section element.*/
+main > section > div
+{
+  /*Make them display as inline-blocks with a width of 33%.*/
+  display: inline-block;
+  width: 33%;
+  
+  /*Give each one a right padding and top margin of 20px each*/
+  padding-right: 20px;
+  margin-top: 20px;
+}
+
+/*Create a rule that selects the h2 in the section element*/
+ main > section > div > h2 
+ {
+   /*set the color to the "Green" #8CC36F.*/
+   color: #8CC36F;
+ }
+
+ /*Create another rule that selects the i element in h2, and set a right margin of 10px.*/
+ main > section > div > h2 > i
+ {
+    margin-right: 10px;
+ }
+
+ #our-work , #contact-us
+ {
+   border-left: 1px solid rgba(170, 239, 135, 0.8);
+   padding-left: 20px;
+ }
+ /*create two more rules: one that creates the green border rgba(170, 239, 135, 0.8)
+ between the sections, and one that adds left padding. 
+ Create a rule that selects the first two divs by their IDs.
+  Add a right border using the "Green Border" color from above that is solid and 1px.
+   Create another rule that selects the second two divs by their IDs, and add a left padding of 20px.*/

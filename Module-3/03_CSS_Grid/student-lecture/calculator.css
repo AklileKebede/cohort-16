@@ -11,6 +11,8 @@
 #container div:hover{
     border: 1px solid rgb(238, 114, 114);
 }
+/*Below we are setting grid area and assigning it a new name*/
+/*id name doesn't have to match the grid-area: name*/
 #one {grid-area: one;}
 #two {grid-area:two;}
 #three {grid-area:three;}
@@ -18,10 +20,30 @@
 #five {grid-area:five;}
 #six {grid-area:six;}
 #seven {grid-area:seven;}
+#eight {grid-area:eight;}
+#nine {grid-area:nine;}
+#zero {grid-area:zero;}
 
-/*set grid-area for 8, 9, 0*/
 
 
+/*make the container a grid*/
 #container {
-    /*make the container a grid*/
+    display: grid;
+    grid-template-areas: /* here we are setting the position of the div id=container*/
+    "seven eight nine"
+    "four five six"
+    "one two three"
+    ". zero ." /*The dot(.) leaves the cell empty*/
+    ;
+    
+    grid-template-columns: 1fr 1fr 1fr; /*fr is fraction and it grows relative to the screen size while px doesn't change*/
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+
+    gap: 10px 10px; /*first is: row gap , second is: column gap*/
+
+    justify-items: start;/*pushes the grid left to right as much as possible, start=to the left*/
+    align-items: start;/*pushes the grid top to bottom as much as possible, start= to top */
+
+    height: 90vh;/*vh=view height*/
+
 }

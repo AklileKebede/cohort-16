@@ -11,6 +11,7 @@ body {
     margin-left: 8%;
     margin-right: 8%;
     background-color: rgba(192, 192, 192, 0.1);
+
 }
 
 h1 {
@@ -49,4 +50,134 @@ header img {
 
 #student-picture img{
     border-radius: 50%;
+    
+}
+/*You'll need to define two grid container elements that can be located using their id attributes: main-grid and experience-grid. 
+Note how experience-grid is a child element of main-grid.*/
+
+/* In the selectors for main-grid, set align-items to center 
+For student-picture and student-contact, set text-align to center*/
+
+/*Assign each area a grid-area name in main-grid*/
+#te-logo {grid-area: te-logo;}
+#headline {grid-area: headline;}
+#student-picture {grid-area: student-picture; text-align: center;}
+#student-quote {grid-area: student-quote;}
+#student-profile {grid-area: student-profile;}
+#student-contact {grid-area: student-contact; text-align: center;}
+#experience-grid {grid-area: experience-grid;}
+footer {grid-area: footer;}
+
+/*Assign each area a grid-area name in experience-grid*/
+#experience-code {grid-area: experience-code;}
+#experience-database {grid-area: experience-database;}
+#experience-web {grid-area: experience-web;}
+#experience-design {grid-area: experience-design;}
+
+/*@media screen and (min-width: 1025px)/*Desktop greater than 1024px*/
+
+/*main-grid container
+selector #main-grid. 
+Set the display property to grid, with three evenly sized columns, 
+Row gap of 20px, and a column gap of 50px*/
+#main-grid
+{
+    display: grid;
+    grid-template-areas: 
+    "te-logo te-logo te-logo "
+    "headline headline student-picture"
+    "student-quote student-quote student-picture"
+    "student-profile  student-profile student-contact"
+    "experience-grid experience-grid experience-grid"
+    "footer footer footer";
+
+   grid-template-columns: 1fr 1fr 1fr;
+   row-gap: 20px;
+   column-gap: 50px;
+   align-items: center;
+ 
+
+}
+/*experience-grid container
+selector #experience-grid,
+Set display property to grid, with two evenly sized columns,
+Row gap of 20px, and a column gap of 50px.*/
+#main-grid > #experience-grid
+{
+    display: grid;
+    grid-template-areas: 
+    "experience-code experience-code"
+    "experience-database experience-database"
+    "experience-web experience-design";
+
+    grid-template-columns: 1fr 1fr;
+   row-gap: 20px;
+   column-gap: 50px;
+}
+
+
+@media screen and (max-width: 1024px)/*create a media query with a max-width of 1024px.*/
+{
+/*Add selectors for main-grid.*/
+#main-grid
+{
+/*Change the columns to two evenly sized columns.*/
+grid-template-areas:
+    "te-logo te-logo"
+    "headline headline"
+    "student-quote student-picture"
+    "student-quote student-contact"
+    "student-profile  student-profile "
+    "experience-grid experience-grid"
+    "footer footer";
+    
+    grid-template-columns: 1fr 1fr;
+    /*set the column gap to 35px,*/
+    column-gap: 35px;
+}
+
+/*Add selectors for experience-grid.*/
+#main-grid > #experience-grid
+{
+    display: grid;
+    grid-template-areas: 
+    "experience-code experience-web"
+    "experience-database experience-design";
+
+    /*For experience-grid, set both the row and column gaps to 20px*/
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+}
+}
+@media screen and (max-width: 450px)/*create a media query with a max-width of 450px.*/
+{
+/*Add selectors for main-grid.*/
+#main-grid
+{
+/*Change the columns to two evenly sized columns.*/
+grid-template-areas:
+    "te-logo"
+    "headline"
+    "student-quote"
+    "student-picture"
+    "student-contact"
+    "student-profile"
+    "experience-grid"
+    "footer";
+    
+    grid-template-columns: 1fr;
+}
+
+/*Add selectors for experience-grid.*/
+#main-grid > #experience-grid
+{
+    display: grid;
+    grid-template-areas: 
+    "experience-code"
+    "experience-web"
+    "experience-database"
+    "experience-design";
+
+    grid-template-columns: 1fr;
+}
 }

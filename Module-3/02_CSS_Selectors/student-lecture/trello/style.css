@@ -1,0 +1,138 @@
+html {
+    height: 100%;
+    font-size: 16px;
+}
+
+*{
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Raleway', sans-serif;
+    background-image: linear-gradient(to bottom, #858c90, lightgray);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    white-space: nowrap; /* do not find space and wrap, make everything in one line*/
+}
+/*Selecter is the part of html we would like to design*/
+div.trello-list { /*Selecter: Any DIV with a class of Trell-List*/
+    display: inline-block;
+    width: 300px;
+    background-color: #ddd;
+    border-radius: 2px 3px;
+    margin-right: 10px;
+    vertical-align: top;
+}
+div.trello-list h2 { /*Selecter: Any h2 tag that is under any DIV with cals of trello-List*/
+    margin: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+div.trello-list ol { /*Any ol inside a div with a class of trello-list*/
+    margin: 0px;
+    padding: 0px;
+}
+div.trello-list li {
+    list-style: none;
+    background-color: rgb(255,255,255);
+    font-size: 0.9rem; /*rem=relation to the root, it's similar to percentage*/
+    border-radius: 1px;
+    margin-bottom: 10px;
+    padding: 8px;
+    white-space: normal;
+}
+div.trello-list li:hover { /*when the user hovers on any li under a div that has a class trello-list*/
+color:navy;
+background-color: #f5f6f7;
+}
+div.trello-list li:last-child {
+    /*Find the last-child of the selecter that is li in div with class trello-list*/
+margin-bottom: 0px;
+}
+div.trello-list a {
+    /*Find any a (anchor) that is under our div with a class trello-list*/
+    display: block;
+    text-decoration: none;
+    color: #888;
+    padding: 8px 0px 8px 5px;
+    font-size: 0.85rem;
+}
+div.trello-list a:hover{
+    background-color: rgba(9,45,66,0.1);
+}
+/*Select Any direct child h1 tag of header*/
+header > h1, header > p {
+    display: inline-block;
+    height: 20px;
+    padding-right: 20px;
+    vertical-align: middle;
+    color: rgba(255,255,255,0.8);
+    border-right: 1px solid rgba(255,255,255,0.5);
+}
+header>h1{
+    text-transform: uppercase;/*lowercase,capitalize*/
+    font-size: 1.1rem;/*This sized it down because our root is smaller*/
+}
+header > p {
+    font-size: 0.9rem;
+    padding-left: 5px;
+}
+/*Grab any SPANs with the class lables */
+.labels span {
+    display: inline-block;
+    vertical-align: top;
+    width: 35px;
+    height: 8px;
+    border-radius: 3px;
+}
+/*Grab any with class lable with class Pathway*/
+.label.pathway{
+    background-color: red;
+}
+.label.individual{
+    background-color: green;
+}
+.label.pair{
+    background-color: teal;
+}
+.label.general{
+    background-color: orange;
+}
+header{
+    position: fixed;/*reletive, absolute- similar to fixed*/
+    top: 0px;
+    height: 50px;
+}
+main{
+    margin-top: 50px;/**/
+}
+body::-webkit-scrollbar{
+    width: 10px;
+}
+body::-webkit-scrollbar-track{
+    background: #bbb;
+}
+body::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background: #888;
+}
+body::-webkit-scrollbar-thumb:hover{
+    background: plum;
+}
+/*Select any thing (there should be only 1) with an ID of myList*/
+#myList{
+    border: 1px solid black;
+}
+/*find the element with an ID of myList and select the fist-child*/
+#myList :first-child{
+    border: 1px solid red;
+}
+#myList :last-child{
+    background: skyblue;
+}
+/* find the element with an ID of myList and select the 2nd-child*/
+#myList :nth-child(2) {
+    border: 1px dashed green;
+}
+#myList :nth-child(odd){
+    background-color: purple;
+}
