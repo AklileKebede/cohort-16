@@ -14,15 +14,33 @@ function variables() {
   const daysInWeek = 7;
   printValueAndType("daysInWeek", daysInWeek);
 
-  // Can I change it?
-
+  // Can I change it? No, because the variable is const
+  daysInWeek=8;
+  printValueAndType("daysInWeek", daysInWeek);
   console.log(`There are ${daysInWeek} days in the week`)
 
   // Declares a variable those value can be changed
+  let n;
+  printValueAndType("n",n);
+  n= "Tech Elevator";
+  printValueAndType("n",n);
 
   // Can I change it?
+  n=21; //changed the value and type of n, by declaring it as a number
+  printValueAndType("n",n);
+  
+  // Declare a variable that holds null
+  let thing = null;
+  printValueAndType("thing", thing);
+
+  // Declare not a number (NaN)
+  let notta = NaN;
+  printValueAndType("notta", notta);
 
   // Declares a variable that will always be an array (prime numbers)
+  // C# we would of: const int[] prime = new int[]{1,3,5...};
+  const prime = [1,3,5,7,11];
+  console.table(prime);
 
   // Can I change the values in the array?
 
@@ -37,7 +55,7 @@ function variables() {
 }
 
 function printValueAndType(name, obj) {
-  console.log(`${name}: value is ${obj}, type is ${typeof (obj)}`);
+  console.log(`${name}: value is ${obj}, type is ${typeof (obj)}`); //String interpolation
 }
 
 /**
@@ -87,15 +105,28 @@ function falsy(x) {
  */
 function arrays() {
   // Create an empty array
+    let junkDrawer = []; // Empty array
+    printValueAndType("junkDrawer", junkDrawer);
 
   // Add some elements by pushing
+    junkDrawer.push ("Ben");
+    printValueAndType("junkDrawer", junkDrawer);
 
   // Add some more elements sparsely
+    junkDrawer[3] = 99;
+    printValueAndType("junkDrawer", junkDrawer);
 
   // Use the table command to print the results
-
+    console.table(junkDrawer);
+    console.log(`Length of junk drawer is ${junkDrawer.length}.`)
   // Loop through the array and print all elements
-
+  // i++ increments by 1
+  // i+=1;
+  // i=i+1
+    for (let i = 0; i < junkDrawer.length; i++)
+    {
+      printValueAndType(`junkDrawer[${i}]`,junkDrawer[i]);21
+    }
   return 0;
 }
 

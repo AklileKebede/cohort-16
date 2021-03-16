@@ -1,0 +1,19 @@
+main
+{
+display: grid;
+}
+header
+{
+    display: flex;
+    justify-content: space-between;
+}
+header > div *
+{
+    display: inline-block;
+}
+nav ul
+{
+    display: flex;
+    flex-direction: row;
+
+}

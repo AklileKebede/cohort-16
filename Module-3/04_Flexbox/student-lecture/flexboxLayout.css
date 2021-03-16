@@ -39,7 +39,44 @@ h2 {
     font-weight:bold;
 }
 
-
 /*FLEX settings*/
 
+/*Selector {property-name: value}*/
+#container1
+{
+    display: flex;
+    flex-direction: row; /*Row is default of the display: flex*/
+    flex-wrap: wrap;/*wrap-reverse, only affects the rows to be bottom to top. The order of rows is the same*/
+    align-items: flex-end; /*aligns the items vertically flex-start, flex-end, center, stretch, baseline*/
+    justify-content: space-between;
+}
+#container2
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+#container2 :nth-child(6)
+{
+    background-color: red;
+    order: 1; /*This is based off ascending numbers, while unordered items are at index 0*/
+    flex-basis: 50%;/*makes the selected item take the value space*/
+}
 
+#container2 :nth-child(3)
+{
+    align-self: flex-end; /*flex-end pushs down to the end of container*/
+    background-color: chocolate;
+}
+
+#container2 :nth-child(4)
+{
+    flex-grow: 1;
+    background-color: cadetblue;
+}
+#container2 :nth-child(5)
+{
+    flex-grow: 2;
+    order: -1;
+    background-color: blueviolet;
+}

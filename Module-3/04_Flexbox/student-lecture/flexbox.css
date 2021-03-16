@@ -1,0 +1,50 @@
+body
+{
+    display: flex;
+    flex-direction: column;
+}
+
+#hero > footer /*space means= any descendant of hero that is a footer*/
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
+#featured section
+{
+    display: flex;
+}
+#featured section article div
+{
+    display: flex;
+    align-items: center;/* Align Vertically*/
+    justify-content: center; /*Align horizontally*/
+}
+#all-items section
+{
+    display: flex;
+    flex-direction: column;
+}
+#all-items section article
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+#all-items section article:nth-child(2) div:first-child
+{
+    order: 1;
+}
+
+#all-items section article:nth-child(odd) div:last-child {
+    margin-right: 100px;
+}
+
+#all-items section article:nth-child(even) div:last-child {
+    margin-left: 100px;
+}
