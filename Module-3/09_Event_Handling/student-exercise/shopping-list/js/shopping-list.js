@@ -37,5 +37,54 @@ function displayGroceries() {
   });
 }
 
-setPageTitle();
-displayGroceries();
+/*
+ * When the DOM is fully loaded into a browser, the browser itself will trigger an event called
+ * DOMContentLoaded on the document object. What you need to do is add all of your event listeners inside
+ * of an anonymous function that only runs once the DOMContentLoaded event is fired.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  setPageTitle();
+  displayGroceries();
+  
+  let groceryItems = document.querySelectorAll('li');
+
+  /*Go over the list of items adn mark it complete if event lister click correct*/
+  groceryItems.forEach((groceryItem) => {
+    groceryItem.addEventListener('click', () => {
+      if (!groceryItem.classList.contains('completed')) {
+        groceryItem.classList.add('completed');
+        groceryItem.querySelector('i').classList.add('completed');
+      }
+    });
+
+    groceryItem.addEventListener('dblclick', () => {
+      if (groceryItem.classList.contains('completed')) {
+        groceryItem.classList.remove('completed');
+        groceryItem.querySelector('i').classList.remove('completed');
+      }
+    });
+  });
+
+  let completeButton = document.getElementById('toggleAll');
+  let allItemsIncomplete = true;
+
+  completeButton.addEventListener('click', () => {
+    if (allItemsIncomplete) {
+      groceryItems.forEach(groceryItem => {
+        groceryItem.classList.add('completed');
+        groceryItem.querySelector('i').classList.add('completed');
+      });
+      completeButton.innerText = "Mark All Incomplete";
+      allItemsIncomplete = false;
+    }
+    else {
+      groceryItems.forEach((groceryItem) => {
+        groceryItem.classList.remove('completed');
+        groceryItem.querySelector('i').classList.remove('completed');
+      });
+      completeButton.innerText = "Mark All Complete";
+      allItemsIncomplete = true;
+    }
+    
+    });
+});
