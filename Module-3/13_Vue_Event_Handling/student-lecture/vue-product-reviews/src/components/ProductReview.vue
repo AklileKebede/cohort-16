@@ -1,10 +1,33 @@
 <!--
 Features to add:
   TODO 01: Show the average rating and the frequency of each rating in the "well-display" above the reviews.
+    Average Rating:
+      Make a coputed property for the average rating- Script
+      One-way data bind the div class=well - template
+    N-star review counts:
+      Make a coputed property for nStarReviews that return an array of counts
+      Bind or "count wells" to the proper index of the computed property
+
   TODO 02: Allow the user to click on a Well to display only those reviews with a particular rating
+    Make a filter property that says waht star rating reviews we want to see. filter=0 means see all reviews
+    Make a computed  filteredReviews property wich applies the filter
+    Add click event on the wells, and change the filter accordingly 
+    Change the display loop for reviews to use filteredReviews
+
   TODO 03: Give a visual indication of which filter is being applied
+    Create a CSS class selector which applies some formatiing to the selected filter
+    Apply the "selected" css class to the well which matches the filter value
+
   TODO 04: Provide a form to allow the user to add a new review
+    Create newReview variable to store the values for the new review fields as the user enters
+    Create the Add Review formform
+    Handle the submit / click event on teh form to add the new review to t he collection
+
   TODO 05: Show and hide the AddReview form as appropriate
+    Hide the form by default
+    Create a button/link to show the form (Add Review)
+    Close the form and reset its values if the new review is added
+    Close the form and reset its values if the user presses Cancel
 -->
 <template>
   <div class="main">
@@ -19,40 +42,59 @@ Features to add:
     <!-- TODO 03B: Mark which rating is selected -->
 
     <div class="well-display">
-      <div class="well">
-        <span class="amount"> <!-- data binding goes here -->0</span>
+      <div
+        class="well"
+        v-on:click="filter = 0"
+        v-bind:class="{ 'selected-well': filter === 0 }"
+      >
+        <span class="amount">{{ averageRating }}</span>
         Average Rating
       </div>
 
-      <div class="well">
-        <span class="amount"> <!-- data binding goes here -->0</span>
-        1 Star Review
-      </div>
-
-      <div class="well">
-        <span class="amount"> <!-- data binding goes here -->0</span>
-        2 Star Review
-      </div>
-
-      <div class="well">
-        <span class="amount"> <!-- data binding goes here -->0</span>
-        3 Star Review
-      </div>
-
-      <div class="well">
-        <span class="amount"> <!-- data binding goes here -->0</span>
-        4 Star Review
-      </div>
-
-      <div class="well">
-        <span class="amount"> <!-- data binding goes here -->0</span>
-        5 Star Review
+      <div
+        v-for="i in 5"
+        v-bind:key="i"
+        v-on:click="filter = i"
+        v-bind:class="{ well: true, 'selected-well': filter === i }"
+      >
+        <span class="amount">{{ nStarReviews[i - 1] }}</span>
+        {{ i }} Star Review
       </div>
     </div>
 
     <!-- TODO 05C: Add a link to show or hide the form -->
-
+    <a href="#" v-on:click.prevent="showForm = true" v-show="!showForm"
+      >Add Review</a
+    >
     <!-- TODO 04B: Create the form that allows the user to add a new review -->
+    <form v-on:submit.prevent="addNewReview" v-show="showForm">
+      <!-- Form has: reviewer, title, rating, and review. Object also has: id, favorite-->
+      <div>
+        <label for="reviewer"> Reviewer: </label>
+        <input id="reviewer" type="text" v-model="newReview.reviewer" />
+      </div>
+      <div>
+        <label for="reviewer"> Title: </label>
+        <input id="title" type="text" v-model="newReview.title" />
+      </div>
+      <div>
+        <label for="rating"> Rating: </label>
+        <input
+          id="rating"
+          type="number"
+          min="1"
+          max="5"
+          v-model.number="newReview.rating"
+        />
+      </div>
+      <div>
+        <label for="review"> Review: </label>
+        <textarea id="review" type="text" v-model="newReview.review" />
+      </div>
+      <!-- <input type="submit" value="Save"/> -->
+      <button v-on:click.prevent="resetForm">Cancel</button>
+      <button type="submit">Save</button>
+    </form>
 
     <!-- TODO 05B: Only show the form of the showForm variable is set -->
 
@@ -61,7 +103,7 @@ Features to add:
     <!-- Display each review in a loop -->
     <div
       class="review"
-      v-for="review in reviews"
+      v-for="review in filteredReviews"
       v-bind:key="review.id"
       v-bind:class="{ fav: review.favorite, someOtherClass: review.rating > 3 }"
     >
@@ -97,10 +139,11 @@ export default {
         "Host and plan the perfect cigar party for all your squirelly friends",
 
       // TODO 02A: Create a variable to hold the current ratings Filter value
-
+      filter: 0,
       // TODO 04A: Create a new, empty review object for adding new reviews.
-
+      newReview: {},
       // TODO 05A: Create a variable to store whether the Add Review form should be visible
+      showForm: false,
 
       // Reviews data
       reviews: [
@@ -159,10 +202,53 @@ export default {
   },
 
   // TODO 01A: Create Computed properties for averageRating and number of star ratings
+  computed: {
+    averageRating() {
+      // Calculate the average rating of all the reviews (add ratings of all reviews then divide by the count)
+      if (this.reviews.length === 0) {
+        return 0;
+      }
+      let sum = this.reviews.reduce((accum, review) => {
+        return accum + review.rating;
+      }, 0);
+      return (sum / this.reviews.length).toFixed(2);
+    },
+    nStarReviews() {
+      let result = [0, 0, 0, 0, 0];
+      this.reviews.forEach((review) => {
+        result[review.rating - 1]++;
+      });
+      return result;
+    },
 
-  // TODO 02B: Add a computed property filteredReviews to return the reviews to be displayed
+    // TODO 02B: Add a computed property filteredReviews to return the reviews to be displayed
+    filteredReviews() {
+      return this.reviews.filter((rev) => {
+        return this.filter === 0 || this.filter === rev.rating;
+      });
+    },
+  },
 
   // TODO 04C: Create methods to add the new review or cancel the add
+  methods: {
+    addNewReview() {
+      // alert("submit it now!");
+      //Add
+      this.newReview.id = this.reviews.length + 1;
+      this.newReview.favorite = false;
+
+      // Add the new review to the array of reviews (data)
+      this.reviews.unshift(this.newReview);
+
+      // Clear the new review
+      this.resetForm();
+    },
+    resetForm() {
+      // Clear the new review
+      this.newReview = {};
+      this.showForm = false;
+    },
+  },
 };
 </script>
 
@@ -237,7 +323,7 @@ div.review.fav {
 }
 
 /* TODO 05A: Add a style to Mark which rating is selected */
-/************* Use these or any rule you want
+/* Use these or any rule you want */
 .selected-well {
   border-color: blue;
   box-shadow: 0px 0px 5px 5px lightblue;
@@ -245,6 +331,4 @@ div.review.fav {
 div.main div.well-display div.well:hover {
   box-shadow: 0px 0px 5px 5px lightgray;
 }
-
-*******/
 </style>
