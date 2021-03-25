@@ -162,6 +162,9 @@ export default {
   },
   methods: {},
   computed: {
+    // checkAll(){
+    //   return(this.selectUserIDs.length === this.filtered)
+    // }
     filteredList() {
       let filteredUsers = this.users;
       if (this.filter.firstName != "") {
