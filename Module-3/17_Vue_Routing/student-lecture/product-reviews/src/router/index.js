@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+import Products from '@/views/Products.vue'
 Vue.use(VueRouter)
 /*
   01: Create the home page and a route for the home page
@@ -8,7 +8,11 @@ Vue.use(VueRouter)
     * Add a route to the routes table
 */
 const routes = [
-
+  {
+    path: '/products',
+    name: 'products',
+    component: Products
+  },
 
 ]
 
