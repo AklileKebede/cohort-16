@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+    <nav>
+      <!-- TODO: Add router-links to products and about pages. -->
+      <router-link :to="{name:'Home'}">Home</router-link> |
+      <router-link :to="{name:'myBooks'}">MyBooks</router-link>
+    </nav>
     <router-view />
   </div>
 </template>

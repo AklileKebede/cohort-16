@@ -5,21 +5,13 @@
       <img src="../assets/ping_pong_loader.gif" />
     </div>
     <div class="boards" v-else>
-      <board-column
-        title="Planned"
-        :cards="planned"
-        :boardID="boardId"
-      />
+      <board-column title="Planned" :cards="planned" :boardID="boardId" />
       <board-column
         title="In Progress"
         :cards="inProgress"
         :boardID="boardId"
       />
-      <board-column
-        title="Completed"
-        :cards="completed"
-        :boardID="boardId"
-      />
+      <board-column title="Completed" :cards="completed" :boardID="boardId" />
     </div>
     <div class="board-actions" v-if="!isLoading">
       <router-link to="/">Back to Boards</router-link>
@@ -28,26 +20,26 @@
 </template>
 
 <script>
-import boardsService from '../services/BoardService';
-import BoardColumn from '@/components/BoardColumn';
+import boardsService from "../services/BoardService";
+import BoardColumn from "@/components/BoardColumn";
 
 export default {
-  name: 'cards-list',
+  name: "cards-list",
   props: {
-    boardId: Number
+    boardId: Number,
   },
   components: {
-    BoardColumn
+    BoardColumn,
   },
   data() {
     return {
-      title: '',
+      title: "",
       cards: [],
-      isLoading: true
+      isLoading: true,
     };
   },
   created() {
-    boardsService.getCards(this.$route.params.id).then(response => {
+    boardsService.getCards(this.$route.params.id).then((response) => {
       this.title = response.data.title;
       this.cards = response.data.cards;
       this.isLoading = false;
@@ -55,15 +47,15 @@ export default {
   },
   computed: {
     planned() {
-      return this.cards.filter(card => card.status === 'Planned');
+      return this.cards.filter((card) => card.status === "Planned");
     },
     inProgress() {
-      return this.cards.filter(card => card.status === 'In Progress');
+      return this.cards.filter((card) => card.status === "In Progress");
     },
     completed() {
-      return this.cards.filter(card => card.status === 'Completed');
-    }
-  }
+      return this.cards.filter((card) => card.status === "Completed");
+    },
+  },
 };
 </script>
 
