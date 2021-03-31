@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Products from '@/views/Products.vue'
+import ProductDetail from '@/views/ProductDetail.vue'
+import AddReviewViewPage from '@/views/AddReviewViewPage.vue'
+import About from '@/views/About.vue'
+
 Vue.use(VueRouter)
 /*
   01: Create the home page and a route for the home page
@@ -9,11 +13,26 @@ Vue.use(VueRouter)
 */
 const routes = [
   {
-    path: '/products',
+    path: '/',
     name: 'products',
     component: Products
   },
+  {
+    path:'/product/:id',
+      name:'product-detail',
+    component: ProductDetail
+  },
+  {
+    path: '/product/:id/add-review',
+    name: 'add-review',
+    component: AddReviewViewPage
+  },
 
+{
+    path: '/about',
+    name: 'about',
+    component: About
+  },
 ]
 
 const router = new VueRouter({
