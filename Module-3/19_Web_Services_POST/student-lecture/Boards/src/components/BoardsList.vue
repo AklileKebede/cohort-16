@@ -2,11 +2,14 @@
   <div id="sideNav">
     <h1>My Kanban Boards</h1>
     <div class="boards">
-      <div class="status-message error" v-show="errorMsg !== ''">{{errorMsg}}</div>
+      <div class="status-message error" v-show="errorMsg !== ''">
+        {{ errorMsg }}
+      </div>
       <div class="loading" v-if="isLoading">
         <img src="../assets/loading.gif" />
       </div>
-      <router-link :to="{ name: 'Board', params: { id: board.id } }"
+      <router-link
+        :to="{ name: 'Board', params: { id: board.id } }"
         class="board"
         v-for="board in this.$store.state.boards"
         v-bind:key="board.id"
@@ -16,21 +19,39 @@
       >
         {{ board.title }}
       </router-link>
-      <button class="btn addBoard" v-if="!isLoading && !showAddBoard" v-on:click="showAddBoard = !showAddBoard">Add Board</button>
+      <button
+        class="btn addBoard"
+        v-if="!isLoading && !showAddBoard"
+        v-on:click="showAddBoard = !showAddBoard"
+      >
+        Add Board
+      </button>
       <form v-if="showAddBoard">
         Board Title:
         <input type="text" class="form-control" v-model="newBoard.title" />
         Background Color:
-        <input type="text" class="form-control" v-model="newBoard.backgroundColor" />
-        <button type="button" class="btn btn-submit" v-on:click="saveNewBoard">Save</button>
-        <button type="button" class="btn btn-cancel" v-on:click.prevent="showAddBoard = !showAddBoard">Cancel</button>
+        <input
+          type="text"
+          class="form-control"
+          v-model="newBoard.backgroundColor"
+        />
+        <button type="button" class="btn btn-submit" v-on:click="saveNewBoard">
+          Save
+        </button>
+        <button
+          type="button"
+          class="btn btn-cancel"
+          v-on:click.prevent="showAddBoard = !showAddBoard"
+        >
+          Cancel
+        </button>
       </form>
     </div>
   </div>
 </template>
 
 <script>
-import boardsService from '../services/BoardService';
+import boardsService from "../services/BoardService";
 
 export default {
   data() {
@@ -38,10 +59,10 @@ export default {
       isLoading: true,
       showAddBoard: false,
       newBoard: {
-        title: '',
-        backgroundColor: this.randomBackgroundColor()
+        title: "",
+        backgroundColor: this.randomBackgroundColor(),
       },
-      errorMsg: ''
+      errorMsg: "",
     };
   },
   created() {
@@ -49,11 +70,15 @@ export default {
   },
   methods: {
     retrieveBoards() {
-      boardsService.getBoards().then(response => {
+      boardsService.getBoards().then((response) => {
         this.$store.commit("SET_BOARDS", response.data);
         this.isLoading = false;
 
-        if (this.$route.name == "Home" && response.status === 200 && response.data.length > 0) {
+        if (
+          this.$route.name == "Home" &&
+          response.status === 200 &&
+          response.data.length > 0
+        ) {
           this.$router.push(`/board/${response.data[0].id}`);
         }
       });
@@ -62,28 +87,46 @@ export default {
       // TODO 02: Add the implementation of this function
 
       // set isLoading to true to inform user.
-
+      this.isLoading = true;
       // Call addBoard on the board service
-
-      // When the promise resolves, check for status 201 (created)
+      boardsService.addBoard(this.newBoard).then((response) => {
+        // When the promise resolves, check for status 201 (created)
+        if (response.status === 201) {
           // call retrieveBoards to refresh the page (it will turn off isLoading)
+          // No need to set this.isLoading = false to hide animation, because it is in the retrieveBoards().
+          this.retrieveBoards();
           // hide the form and clear the new board
-
+          this.showAddBoard = false;
+          this.newBoard = {
+            title: "",
+            backgroundColor: this.randomBackgroundColor(),
+          };
+        }
       // If there is an error (catch),
-          // Test the response and request properties and set the appropriate error message.
-          // By setting text to this.errorMsg, the visibility of <div class="status-message error" v-show="errorMsg !== ''">{{errorMsg}}</div> is shown.
-          // Set this.isLoading = false to hide animation.
+      }).catch( (err) =>{
+        if (err.response){
+      // Test the response and request properties and set the appropriate error message.
+      // By setting text to this.errorMsg, the visibility of <div class="status-message error" v-show="errorMsg !== ''">{{errorMsg}}</div> is shown.
+         this.errorMsg = `The server returned error ${err.response.status} - ${err.response.statusText}`;
+        } else if (err.request){
+          //We created a request, but got No response
+          this.errorMsg = "Error - the server could not be reached."
+        } else {
+          // We were not even able to create a request
+          this.errorMsg = "Error - unable to create a request."
+        }
+      });
 
     },
     randomBackgroundColor() {
       return "#" + this.generateHexCode();
     },
     generateHexCode() {
-      var bg = Math.floor(Math.random()*16777215).toString(16);
+      var bg = Math.floor(Math.random() * 16777215).toString(16);
       if (bg.length !== 6) bg = this.generateHexCode();
       return bg;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -134,11 +177,14 @@ h1 {
 .form-control {
   margin-bottom: 10px;
 }
-.btn {margin-bottom: 35px;}
+.btn {
+  margin-bottom: 35px;
+}
 .loading {
   flex: 3;
 }
-.board:hover:not(.router-link-active), .addBoard:hover {
+.board:hover:not(.router-link-active),
+.addBoard:hover {
   font-weight: bold;
 }
 .router-link-active {

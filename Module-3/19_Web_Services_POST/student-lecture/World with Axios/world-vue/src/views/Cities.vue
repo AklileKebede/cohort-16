@@ -33,6 +33,7 @@
 
 <script>
 import CityList from "@/components/CityList.vue";
+import axios from 'axios';
 export default {
   name: "cities",
   components: {
@@ -51,8 +52,11 @@ export default {
       // TODO 02: add in the query string parameters
 
       // This is the url...
-      //let url = `${process.env.VUE_APP_REMOTE_API}/cities`;
-
+      let url = `${process.env.VUE_APP_REMOTE_API}/cities`;
+      axios.get(url)
+      .then( (resp)=>{
+        this.cities = resp.data;
+      })
 
     }
   },
